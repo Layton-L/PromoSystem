@@ -62,10 +62,14 @@ class SQLite3Provider implements Provider {
     }
 
     public function getPromoCodes(): array {
-        $result = $this->database->query("SELECT `promocode` FROM `promocodes`");
-        var_dump($result->fetchArray(SQLITE3_ASSOC));
+        $query = $this->database->query("SELECT `promocode` FROM `promocodes`");
+        $promoCodes = [];
 
-        return [];
+        while ($result = $query->fetchArray(SQLITE3_ASSOC)) {
+            $promoCodes[] = $result["promocode"];
+        }
+
+        return $promoCodes;
     }
 
 }
