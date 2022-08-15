@@ -15,13 +15,21 @@ class QueryHelper {
         $translation = $this->translations[$this->languageName];
 
         if (count($keys) == 1 && $keys[0] == $query) {
-            $data = $translation[$query];
+            $data = $translation[$query] ?? "";
         } else {
             $data = [];
             foreach ($keys as $key) {
                 if (empty($data)) {
+                    if (empty($translation[$key])) {
+                        return "";
+                    }
+
                     $data = $translation[$key];
                 } else {
+                    if (empty($data[$key])) {
+                        return "";
+                    }
+
                     $data = $data[$key];
                 }
             }
