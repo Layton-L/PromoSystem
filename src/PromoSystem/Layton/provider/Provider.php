@@ -16,6 +16,8 @@ interface Provider {
 
     public function getCountUses(string $promoCode): int;
 
+    public function setCountUses(string $promoCode, int $countUses): bool;
+
     public function getMaxCountUses(string $promoCode): int;
 
     public function getActionTime(string $promoCode): int;

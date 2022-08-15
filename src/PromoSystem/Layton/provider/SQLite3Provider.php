@@ -51,6 +51,16 @@ class SQLite3Provider implements Provider {
         return $result->fetchArray(SQLITE3_ASSOC)["count_uses"];
     }
 
+    public function setCountUses(string $promoCode, int $countUses): bool {
+        $statement = $this->database->prepare("UPDATE `promocodes` SET `count_uses` = :count_uses WHERE `promocode` = :promocode");
+
+        $statement->bindValue(":promocode", $promoCode);
+        $statement->bindValue(":count_uses", $countUses);
+
+        $statement->execute();
+        return $this->database->changes() == 1;
+    }
+
     public function getMaxCountUses(string $promoCode): int {
         $result = $this->database->query("SELECT `max_count_uses` FROM `promocodes` WHERE `promocode` = '" . $promoCode ."'");
         return $result->fetchArray(SQLITE3_ASSOC)["max_count_uses"];
