@@ -1,0 +1,12 @@
+name: PromoSystem
+main: PromoSystem\Layton\PromoSystem
+api: 4.0.0
+
+version: 1.0
+author: Layton
+
+permissions:
+  promosystem.promo:
+    default: true
+  promosystem.admin:
+    default: op
