@@ -10,14 +10,16 @@ interface Provider {
 
     public function isCreated(string $promoCode): bool;
 
-    public function isCreator(Player $player): bool;
-
-    public function create(Player $player, string $promoCode, int $amount): bool;
+    public function create(string $promoCode, int $amount): bool;
 
     public function delete(string $promoCode): bool;
 
-    public function getData(string $promoCode): array;
+    public function getAmount(string $promoCode): int;
 
-    public function getDataByPlayer(Player $player): array;
+    public function getCountUses(string $promoCode): int;
+
+    public function getMaxCountUses(string $promoCode): int;
+
+    public function getActionTime(string $promoCode): int;
 
 }

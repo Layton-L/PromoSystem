@@ -1,5 +1,7 @@
 CREATE TABLE IF NOT EXISTS promocodes (
-    creator_name TEXT    NOT NULL,
-    promocode    TEXT    NOT NULL,
-    amount       INTEGER NOT NULL
+    promocode      TEXT    NOT NULL,
+    amount         INTEGER NOT NULL,
+    count_uses     INTEGER NOT NULL,
+    max_count_uses INTEGER NOT NULL,
+    action_time    INTEGER NOT NULL
 );
