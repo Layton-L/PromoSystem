@@ -1,0 +1,7 @@
+---
+# sqlite / json / yaml
+#provider: "sqlite3"
+
+# en / ru
+language: "en"
+...
