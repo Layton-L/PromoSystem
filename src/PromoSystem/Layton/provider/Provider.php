@@ -24,11 +24,11 @@ interface Provider {
 
     public function setUses(string $promo, int $uses): bool;
 
-    public function getMaxUses(string $promo): ?int;
+    public function getMaxUses(string $promo): int;
 
     public function setMaxUses(string $promo, int $maxUses): bool;
 
-    public function getActionTime(string $promo): ?int;
+    public function getActionTime(string $promo): int;
 
     public function setActionTime(string $promo, int $actionTime): bool;
 
