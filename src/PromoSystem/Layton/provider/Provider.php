@@ -30,7 +30,7 @@ interface Provider {
 
     public function getActionTime(string $promo): ?int;
 
-    public function setActionTime(string $promo, int $actionTime);
+    public function setActionTime(string $promo, int $actionTime): bool;
 
     public function getAmount(string $promo): int;
 
