@@ -8,6 +8,7 @@ use pocketmine\plugin\PluginBase;
 use pocketmine\utils\Config;
 use PromoSystem\Layton\provider\ConfigProvider;
 use PromoSystem\Layton\provider\SQLite3Provider;
+use PromoSystem\Layton\response\Response;
 use PromoSystem\Layton\translation\TranslationManager;
 
 class PromoSystem extends PluginBase {
