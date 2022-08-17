@@ -38,7 +38,7 @@ class ConfigProvider implements Provider {
 
     public function createTemporary(string $promo, int $actionTime, int $amount): bool {
         try {
-            $this->promos->set($promo, [0, -1, $actionTime, $amount]);
+            $this->promos->set($promo, [0, -1, time(), $actionTime, $amount]);
             $this->promos->save();
 
             return true;
@@ -49,7 +49,7 @@ class ConfigProvider implements Provider {
 
     public function createUsesLimited(string $promo, int $maxUses, int $amount): bool {
         try {
-            $this->promos->set($promo, [0, $maxUses, -1, $amount]);
+            $this->promos->set($promo, [0, $maxUses, time(), -1, $amount]);
             $this->promos->save();
 
             return true;
@@ -105,14 +105,32 @@ class ConfigProvider implements Provider {
         }
     }
 
-    public function getActionTime(string $promo): int {
+    public function getCreationTime(string $promo): int {
         return $this->promos->get($promo)[2];
+    }
+
+    public function setCreationTime(string $promo, int $creationTime): bool {
+        try {
+            $data = $this->promos->get($promo);
+            $data[2] = $creationTime;
+
+            $this->promos->set($promo, $data);
+            $this->promos->save();
+
+            return true;
+        } catch (Exception) {
+            return false;
+        }
+    }
+
+    public function getActionTime(string $promo): int {
+        return $this->promos->get($promo)[3];
     }
 
     public function setActionTime(string $promo, int $actionTime): bool {
         try {
             $data = $this->promos->get($promo);
-            $data[2] = $actionTime;
+            $data[3] = $actionTime;
 
             $this->promos->set($promo, $data);
             $this->promos->save();
@@ -124,13 +142,13 @@ class ConfigProvider implements Provider {
     }
 
     public function getAmount(string $promo): int {
-        return $this->promos->get($promo)[3];
+        return $this->promos->get($promo)[4];
     }
 
     public function setAmount(string $promo, int $amount): bool {
         try {
             $data = $this->promos->get($promo);
-            $data[3] = $amount;
+            $data[4] = $amount;
 
             $this->promos->set($promo, $data);
             $this->promos->save();

@@ -38,10 +38,11 @@ class SQLite3Provider implements Provider {
     }
 
     public function createTemporary(string $promo, int $actionTime, int $amount): bool {
-        $statement = $this->database->prepare("INSERT INTO `promos` (`promo`, `max_uses`, `action_time`, `amount`) VALUES (:promo, :max_uses, :action_time, :amount)");
+        $statement = $this->database->prepare("INSERT INTO `promos` (`promo`, `max_uses`, `creation_time`, `action_time`, `amount`) VALUES (:promo, :max_uses, :creation_time, :action_time, :amount)");
 
         $statement->bindValue(":promo", $promo);
         $statement->bindValue(":max_uses", -1);
+        $statement->bindValue(":creation_time", time());
         $statement->bindValue(":action_time", $actionTime);
         $statement->bindValue(":amount", $amount);
 
@@ -50,10 +51,11 @@ class SQLite3Provider implements Provider {
     }
 
     public function createUsesLimited(string $promo, int $maxUses, int $amount): bool {
-        $statement = $this->database->prepare("INSERT INTO `promos` (`promo`, `max_uses`, `action_time`, `amount`) VALUES (:promo, :max_uses, :action_time, :amount)");
+        $statement = $this->database->prepare("INSERT INTO `promos` (`promo`, `max_uses`, `creation_time`, `action_time`, `amount`) VALUES (:promo, :max_uses, :creation_time, :action_time, :amount)");
 
         $statement->bindValue(":promo", $promo);
         $statement->bindValue(":max_uses", $maxUses);
+        $statement->bindValue(":creation_time", time());
         $statement->bindValue(":action_time", -1);
         $statement->bindValue(":amount", $amount);
 
@@ -91,6 +93,21 @@ class SQLite3Provider implements Provider {
 
         $statement->bindValue(":promo", $promo);
         $statement->bindValue(":max_uses", $maxUses);
+
+        $statement->execute();
+        return $this->database->changes() === 1;
+    }
+
+    public function getCreationTime(string $promo): int {
+        $result = $this->database->query("SELECT `creation_time` FROM `promos` WHERE `promo` = '" . $promo ."'");
+        return $result->fetchArray(SQLITE3_ASSOC)["creation_time"];
+    }
+
+    public function setCreationTime(string $promo, int $creationTime): bool {
+        $statement = $this->database->prepare("UPDATE `promos` SET `creation_time` = :creation_time WHERE `promo` = :promo");
+
+        $statement->bindValue(":promo", $promo);
+        $statement->bindValue(":creation_time", $creationTime);
 
         $statement->execute();
         return $this->database->changes() === 1;

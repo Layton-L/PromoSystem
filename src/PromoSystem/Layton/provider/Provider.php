@@ -28,6 +28,10 @@ interface Provider {
 
     public function setMaxUses(string $promo, int $maxUses): bool;
 
+    public function getCreationTime(string $promo): int;
+
+    public function setCreationTime(string $promo, int $creationTime): bool;
+
     public function getActionTime(string $promo): int;
 
     public function setActionTime(string $promo, int $actionTime): bool;
