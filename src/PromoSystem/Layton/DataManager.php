@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace PromoSystem\Layton;
 
 use PromoSystem\Layton\event\PromoCreationEvent;
+use PromoSystem\Layton\event\PromoDeletionEvent;
 use PromoSystem\Layton\provider\Provider;
 use PromoSystem\Layton\response\Response;
 use PromoSystem\Layton\types\CodeTypes;
@@ -68,6 +69,15 @@ class DataManager {
 
     public function delete(string $promo): bool|Response {
         if ($this->provider->isCreated($promo)) {
+            $type = $this->provider->isTemporary($promo) ? PromoTypes::TEMPORARY : PromoTypes::USES_LIMITED;
+
+            $event = new PromoDeletionEvent($promo, $type);
+            $event->call();
+
+            if ($event->isCancelled()) {
+                return new Response(CodeTypes::PROMO_DELETION_CANCELLED);
+            }
+
             return $this->provider->delete($promo);
         } else {
             return new Response(CodeTypes::PROMO_NOT_CREATED);

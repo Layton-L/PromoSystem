@@ -12,4 +12,6 @@ class CodeTypes {
 
     public const PROMO_CREATION_CANCELLED = -3;
 
+    public const PROMO_DELETION_CANCELLED = -4;
+
 }
