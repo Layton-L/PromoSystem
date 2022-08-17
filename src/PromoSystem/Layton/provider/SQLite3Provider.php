@@ -158,4 +158,5 @@ class SQLite3Provider implements Provider {
         $statement->execute();
         return $this->database->changes() === 1;
     }
+
 }
