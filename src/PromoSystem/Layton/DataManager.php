@@ -4,6 +4,8 @@ declare(strict_types = 1);
 
 namespace PromoSystem\Layton;
 
+use pocketmine\player\Player;
+use PromoSystem\Layton\event\PromoActivatedEvent;
 use PromoSystem\Layton\event\PromoCreationEvent;
 use PromoSystem\Layton\event\PromoDeletionEvent;
 use PromoSystem\Layton\event\PromoSetActionTimeEvent;
@@ -11,6 +13,7 @@ use PromoSystem\Layton\event\PromoSetAmountEvent;
 use PromoSystem\Layton\event\PromoSetCreationTimeEvent;
 use PromoSystem\Layton\event\PromoSetMaxUsesEvent;
 use PromoSystem\Layton\event\PromoSetUsesEvent;
+use PromoSystem\Layton\event\PromoUnactivatedEvent;
 use PromoSystem\Layton\provider\Provider;
 use PromoSystem\Layton\response\Response;
 use PromoSystem\Layton\types\CodeTypes;
@@ -205,6 +208,54 @@ class DataManager {
             }
 
             return $this->provider->setAmount($promo, $amount);
+        } else {
+            return new Response(CodeTypes::PROMO_NOT_CREATED);
+        }
+    }
+
+    public function isActivatedByUser(Player $player, string $promo): bool|Response {
+        if ($this->provider->isCreated($promo)) {
+            return $this->provider->isActivatedByUser($player, $promo);
+        } else {
+            return new Response(CodeTypes::PROMO_NOT_CREATED);
+        }
+    }
+
+    public function addToUser(Player $player, string $promo): bool|Response {
+        if ($this->provider->isCreated($promo)) {
+            if ($this->provider->isActivatedByUser($player, $promo)) {
+                return new Response(CodeTypes::PROMO_ALREADY_ACTIVATED);
+            }
+            $type = $this->provider->isTemporary($promo) ? PromoTypes::TEMPORARY : PromoTypes::USES_LIMITED;
+
+            $event = new PromoActivatedEvent($promo, $player, $type);
+            $event->call();
+
+            if ($event->isCancelled()) {
+                return new Response(CodeTypes::PROMO_ACTIVATED_CANCELLED);
+            }
+
+            return $this->provider->addToUser($player, $promo);
+        } else {
+            return new Response(CodeTypes::PROMO_NOT_CREATED);
+        }
+    }
+
+    public function deleteFromUser(Player $player, string $promo): bool|Response {
+        if ($this->provider->isCreated($promo)) {
+            if (!$this->provider->isActivatedByUser($player, $promo)) {
+                return new Response(CodeTypes::PROMO_NOT_ACTIVATED);
+            }
+            $type = $this->provider->isTemporary($promo) ? PromoTypes::TEMPORARY : PromoTypes::USES_LIMITED;
+
+            $event = new PromoUnactivatedEvent($promo, $player, $type);
+            $event->call();
+
+            if ($event->isCancelled()) {
+                return new Response(CodeTypes::PROMO_UNACTIVATED_CANCELLED);
+            }
+
+            return $this->provider->deleteFromUser($player, $promo);
         } else {
             return new Response(CodeTypes::PROMO_NOT_CREATED);
         }

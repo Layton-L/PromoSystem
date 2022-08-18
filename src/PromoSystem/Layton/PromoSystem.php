@@ -5,8 +5,6 @@ declare(strict_types = 1);
 namespace PromoSystem\Layton;
 
 use pocketmine\plugin\PluginBase;
-use pocketmine\utils\Config;
-use PromoSystem\Layton\provider\ConfigProvider;
 use PromoSystem\Layton\provider\SQLite3Provider;
 use PromoSystem\Layton\translation\TranslationManager;
 
@@ -27,8 +25,6 @@ class PromoSystem extends PluginBase {
         $this->saveDefaultConfig();
 
         $provider = match ($this->getConfig()->get("provider")) {
-            "json" => new ConfigProvider($this, Config::JSON),
-            "yaml" => new ConfigProvider($this, Config::YAML),
             default => new SQLite3Provider($this),
         };
 

@@ -1,5 +1,5 @@
 ---
-# sqlite / json / yaml
+# sqlite
 provider: "sqlite3"
 
 # en / ru
