@@ -22,8 +22,6 @@ class CodeTypes {
 
     public const PROMO_DELETION_CANCELLED = -8;
 
-    public const PROMO_CHANGE_DATA_CANCELLED = -9;
-
-    public const PROMO_INVALID_TYPE = -10;
+    public const PROMO_INVALID_TYPE = -9;
 
 }

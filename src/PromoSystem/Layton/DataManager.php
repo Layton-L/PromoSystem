@@ -5,13 +5,13 @@ declare(strict_types = 1);
 namespace PromoSystem\Layton;
 
 use pocketmine\player\Player;
+use PromoSystem\Layton\event\promo\change\PromoChangeActionTimeEvent;
+use PromoSystem\Layton\event\promo\change\PromoChangeAmountEvent;
+use PromoSystem\Layton\event\promo\change\PromoChangeCreationTimeEvent;
+use PromoSystem\Layton\event\promo\change\PromoChangeMaxUsesEvent;
+use PromoSystem\Layton\event\promo\change\PromoChangeUsesEvent;
 use PromoSystem\Layton\event\promo\PromoCreationEvent;
 use PromoSystem\Layton\event\promo\PromoDeletionEvent;
-use PromoSystem\Layton\event\promo\PromoSetActionTimeEvent;
-use PromoSystem\Layton\event\promo\PromoSetAmountEvent;
-use PromoSystem\Layton\event\promo\PromoSetCreationTimeEvent;
-use PromoSystem\Layton\event\promo\PromoSetMaxUsesEvent;
-use PromoSystem\Layton\event\promo\PromoSetUsesEvent;
 use PromoSystem\Layton\event\user\UserActivatedPromoEvent;
 use PromoSystem\Layton\event\user\UserUnactivatedPromoEvent;
 use PromoSystem\Layton\provider\Provider;
@@ -102,13 +102,7 @@ class DataManager {
 
     public function setUses(string $promo, int $uses): bool|Response {
         if ($this->provider->isCreated($promo)) {
-            $event = new PromoSetUsesEvent($promo, $uses);
-            $event->call();
-
-            if ($event->isCancelled()) {
-                return new Response(CodeTypes::PROMO_CHANGE_DATA_CANCELLED);
-            }
-
+            (new PromoChangeUsesEvent($promo, $uses))->call();
             return $this->provider->setUses($promo, $uses);
         } else {
             return new Response(CodeTypes::PROMO_NOT_CREATED);
@@ -128,13 +122,8 @@ class DataManager {
             if ($this->provider->isTemporary($promo)) {
                 return new Response(CodeTypes::PROMO_INVALID_TYPE);
             }
-            $event = new PromoSetMaxUsesEvent($promo, $maxUses);
-            $event->call();
 
-            if ($event->isCancelled()) {
-                return new Response(CodeTypes::PROMO_CHANGE_DATA_CANCELLED);
-            }
-
+            (new PromoChangeMaxUsesEvent($promo, $maxUses))->call();
             return $this->provider->setMaxUses($promo, $maxUses);
         } else {
             return new Response(CodeTypes::PROMO_NOT_CREATED);
@@ -151,13 +140,7 @@ class DataManager {
 
     public function setCreationTime(string $promo, int $creationTime): bool|Response {
         if ($this->provider->isCreated($promo)) {
-            $event = new PromoSetCreationTimeEvent($promo, $creationTime);
-            $event->call();
-
-            if ($event->isCancelled()) {
-                return new Response(CodeTypes::PROMO_CHANGE_DATA_CANCELLED);
-            }
-
+            (new PromoChangeCreationTimeEvent($promo, $creationTime))->call();
             return $this->provider->setCreationTime($promo, $creationTime);
         } else {
             return new Response(CodeTypes::PROMO_NOT_CREATED);
@@ -177,13 +160,8 @@ class DataManager {
             if ($this->provider->isUsesLimited($promo)) {
                 return new Response(CodeTypes::PROMO_INVALID_TYPE);
             }
-            $event = new PromoSetActionTimeEvent($promo, $actionTime);
-            $event->call();
 
-            if ($event->isCancelled()) {
-                return new Response(CodeTypes::PROMO_CHANGE_DATA_CANCELLED);
-            }
-
+            (new PromoChangeActionTimeEvent($promo, $actionTime))->call();
             return $this->provider->setActionTime($promo, $actionTime);
         } else {
             return new Response(CodeTypes::PROMO_NOT_CREATED);
@@ -200,13 +178,7 @@ class DataManager {
 
     public function setAmount(string $promo, int $amount): bool|Response {
         if ($this->provider->isCreated($promo)) {
-            $event = new PromoSetAmountEvent($promo, $amount);
-            $event->call();
-
-            if ($event->isCancelled()) {
-                return new Response(CodeTypes::PROMO_CHANGE_DATA_CANCELLED);
-            }
-
+            (new PromoChangeAmountEvent($promo, $amount))->call();
             return $this->provider->setAmount($promo, $amount);
         } else {
             return new Response(CodeTypes::PROMO_NOT_CREATED);

@@ -4,9 +4,9 @@ declare(strict_types = 1);
 
 namespace PromoSystem\Layton\event\user;
 
-use PromoSystem\Layton\event\BaseEvent;
+use PromoSystem\Layton\event\CancellableEvent;
 
-abstract class UserEvent extends BaseEvent {
+abstract class UserEvent extends CancellableEvent {
 
     public function __construct(private string $promo) {
         parent::__construct();

@@ -8,7 +8,7 @@ use pocketmine\event\Cancellable;
 use pocketmine\event\CancellableTrait;
 use pocketmine\event\Event;
 
-abstract class BaseEvent extends Event implements Cancellable {
+abstract class CancellableEvent extends Event implements Cancellable {
 
     use CancellableTrait;
 

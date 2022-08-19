@@ -2,9 +2,11 @@
 
 declare(strict_types = 1);
 
-namespace PromoSystem\Layton\event\promo;
+namespace PromoSystem\Layton\event\promo\change;
 
-class PromoSetAmountEvent extends PromoEvent {
+use PromoSystem\Layton\event\promo\PromoChangeDataEvent;
+
+class PromoChangeAmountEvent extends PromoChangeDataEvent {
 
     public function __construct(string $promo, private int $amount) {
         parent::__construct($promo);
