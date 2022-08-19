@@ -1,3 +1,30 @@
 {
-  "name": "en"
+  "name": "en",
+  "command": {
+    "promo": {
+      "description": "Allows users to activate promo code"
+    }
+  },
+  "module": {
+    "promo": {
+      "message": {
+        "success": "You have successfully activated the promo code. You have received a bonus in the parameter: %amount%",
+        "error": {
+          "uncreated": "Promo code does not exist.",
+          "ended": "The promo code has expired.",
+          "activated": "You have already used this promo code.",
+          "cancelled": "An error occurred while activating the promo code."
+        }
+      },
+      "form": {
+        "title": "Activate promo code",
+        "label": "To activate the promo code, fill out the form below.",
+        "input": {
+          "text": "Promo code:",
+          "placeholder": "Enter promo code:",
+          "empty": "Promo code cannot be empty."
+        }
+      }
+    }
+  }
 }

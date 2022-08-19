@@ -5,6 +5,8 @@ declare(strict_types = 1);
 namespace PromoSystem\Layton;
 
 use pocketmine\plugin\PluginBase;
+use PromoSystem\Layton\command\PromoCommand;
+use PromoSystem\Layton\form\PromoActivateForm;
 use PromoSystem\Layton\provider\SQLite3Provider;
 use PromoSystem\Layton\translation\TranslationManager;
 
@@ -30,11 +32,20 @@ class PromoSystem extends PluginBase {
 
         $this->translationManager = new TranslationManager($this);
         $this->dataManager = new DataManager($provider);
-        //$this->registerCommands();
+        $this->registerCommands();
     }
 
     public function onEnable(): void {
 
+    }
+
+    private function registerCommands(): void {
+        $queryHelper = $this->getTranslationManager()->getQueryHelper();
+        $map = $this->getServer()->getCommandMap();
+
+        $map->registerAll("PromoSystem", [
+            new PromoCommand("promo", $queryHelper->getTranslatedString("command.promo.description"))
+        ]);
     }
 
     public function getTranslationManager(): TranslationManager {
