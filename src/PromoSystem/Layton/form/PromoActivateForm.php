@@ -13,11 +13,12 @@ use PromoSystem\Layton\response\Response;
 class PromoActivateForm extends CustomForm {
 
     public function __construct(string $error = null) {
-        $dataManager = PromoSystem::getInstance()->getDataManager();
         $queryHelper = PromoSystem::getInstance()->getTranslationManager()->getQueryHelper();
 
-        parent::__construct(function (Player $player, array $data = null) use ($dataManager, $queryHelper) {
+        parent::__construct(function (Player $player, array $data = null) use ($queryHelper) {
             if ($data === null) return;
+
+            $dataManager = PromoSystem::getInstance()->getDataManager();
             $promo = $data["promo"];
 
             if ($promo === "") {

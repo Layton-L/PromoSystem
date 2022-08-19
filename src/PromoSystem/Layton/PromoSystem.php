@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace PromoSystem\Layton;
 
 use pocketmine\plugin\PluginBase;
+use PromoSystem\Layton\command\PromoAdminCommand;
 use PromoSystem\Layton\command\PromoCommand;
 use PromoSystem\Layton\form\PromoActivateForm;
 use PromoSystem\Layton\provider\SQLite3Provider;
@@ -44,7 +45,8 @@ class PromoSystem extends PluginBase {
         $map = $this->getServer()->getCommandMap();
 
         $map->registerAll("PromoSystem", [
-            new PromoCommand("promo", $queryHelper->getTranslatedString("command.promo.description"))
+            new PromoCommand("promo", $queryHelper->getTranslatedString("command.promo.description")),
+            new PromoAdminCommand("promo-admin", $queryHelper->getTranslatedString("command.promo-admin.description"))
         ]);
     }
 
