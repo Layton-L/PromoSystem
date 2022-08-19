@@ -5,15 +5,15 @@ declare(strict_types = 1);
 namespace PromoSystem\Layton;
 
 use pocketmine\player\Player;
-use PromoSystem\Layton\event\PromoActivatedEvent;
-use PromoSystem\Layton\event\PromoCreationEvent;
-use PromoSystem\Layton\event\PromoDeletionEvent;
-use PromoSystem\Layton\event\PromoSetActionTimeEvent;
-use PromoSystem\Layton\event\PromoSetAmountEvent;
-use PromoSystem\Layton\event\PromoSetCreationTimeEvent;
-use PromoSystem\Layton\event\PromoSetMaxUsesEvent;
-use PromoSystem\Layton\event\PromoSetUsesEvent;
-use PromoSystem\Layton\event\PromoUnactivatedEvent;
+use PromoSystem\Layton\event\promo\PromoCreationEvent;
+use PromoSystem\Layton\event\promo\PromoDeletionEvent;
+use PromoSystem\Layton\event\promo\PromoSetActionTimeEvent;
+use PromoSystem\Layton\event\promo\PromoSetAmountEvent;
+use PromoSystem\Layton\event\promo\PromoSetCreationTimeEvent;
+use PromoSystem\Layton\event\promo\PromoSetMaxUsesEvent;
+use PromoSystem\Layton\event\promo\PromoSetUsesEvent;
+use PromoSystem\Layton\event\user\UserActivatedPromoEvent;
+use PromoSystem\Layton\event\user\UserUnactivatedPromoEvent;
 use PromoSystem\Layton\provider\Provider;
 use PromoSystem\Layton\response\Response;
 use PromoSystem\Layton\types\CodeTypes;
@@ -228,7 +228,7 @@ class DataManager {
             }
             $type = $this->provider->isTemporary($promo) ? PromoTypes::TEMPORARY : PromoTypes::USES_LIMITED;
 
-            $event = new PromoActivatedEvent($promo, $player, $type);
+            $event = new UserActivatedPromoEvent($promo, $player, $type);
             $event->call();
 
             if ($event->isCancelled()) {
@@ -248,7 +248,7 @@ class DataManager {
             }
             $type = $this->provider->isTemporary($promo) ? PromoTypes::TEMPORARY : PromoTypes::USES_LIMITED;
 
-            $event = new PromoUnactivatedEvent($promo, $player, $type);
+            $event = new UserUnactivatedPromoEvent($promo, $player, $type);
             $event->call();
 
             if ($event->isCancelled()) {

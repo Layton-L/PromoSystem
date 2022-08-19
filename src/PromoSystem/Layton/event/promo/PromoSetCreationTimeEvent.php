@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace PromoSystem\Layton\event;
+namespace PromoSystem\Layton\event\promo;
 
 class PromoSetCreationTimeEvent extends PromoEvent {
 

@@ -2,9 +2,9 @@
 
 declare(strict_types = 1);
 
-namespace PromoSystem\Layton\event;
+namespace PromoSystem\Layton\event\promo;
 
-class PromoCreationEvent extends PromoEvent {
+class PromoDeletionEvent extends PromoEvent {
 
     public function __construct(string $promo, private string $promoType) {
         parent::__construct($promo);

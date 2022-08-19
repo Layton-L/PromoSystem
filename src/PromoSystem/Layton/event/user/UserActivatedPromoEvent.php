@@ -2,11 +2,11 @@
 
 declare(strict_types = 1);
 
-namespace PromoSystem\Layton\event;
+namespace PromoSystem\Layton\event\user;
 
 use pocketmine\player\Player;
 
-class PromoUnactivatedEvent extends PromoEvent {
+class UserActivatedPromoEvent extends UserEvent {
 
     public function __construct(string $promo, private Player $user, private string $promoType) {
         parent::__construct($promo);
