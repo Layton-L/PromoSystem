@@ -35,23 +35,16 @@ class PromoActivateForm extends CustomForm {
                 return;
             }
 
+            $uses = $dataManager->getUses($promo);
             $amount = $dataManager->getAmount($promo);
 
             if ($dataManager->isUsesLimited($promo)) {
-                $uses = $dataManager->getUses($promo);
                 $maxUses = $dataManager->getMaxUses($promo);
 
                 if ($uses >= $maxUses) {
                     $player->sendForm(new PromoActivateForm("module.promo.message.error.ended"));
                     return;
                 }
-
-                if ($dataManager->addToUser($player, $promo) instanceof Response) {
-                    $player->sendForm(new PromoActivateForm("module.promo.message.error.cancelled"));
-                    return;
-                }
-
-                $dataManager->setUses($promo, $uses + 1);
             } else {
                 $creationTime = $dataManager->getCreationTime($promo);
                 $actionTime = $dataManager->getActionTime($promo);
@@ -60,15 +53,16 @@ class PromoActivateForm extends CustomForm {
                     $player->sendForm(new PromoActivateForm("module.promo.message.error.ended"));
                     return;
                 }
-
-                if ($dataManager->addToUser($player, $promo) instanceof Response) {
-                    $player->sendForm(new PromoActivateForm("module.promo.message.error.cancelled"));
-                    return;
-                }
-
             }
 
+            if ($dataManager->addToUser($player, $promo) instanceof Response) {
+                $player->sendForm(new PromoActivateForm("module.promo.message.error.cancelled"));
+                return;
+            }
+
+            $dataManager->setUses($promo, $uses + 1);
             BedrockEconomyAPI::getInstance()->addToPlayerBalance($player->getName(), $amount);
+
             $player->sendMessage(str_replace("%amount%", (string) $amount, $queryHelper->getTranslatedString("module.promo.message.success")));
         });
         $this->setTitle($queryHelper->getTranslatedString("module.promo.form.title"));
