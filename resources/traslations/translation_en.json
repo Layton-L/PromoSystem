@@ -29,7 +29,7 @@
         }
       }
     },
-    "promo-admin": {
+    "admin": {
       "simple": {
         "form": {
           "title": "Promo code management",
@@ -41,7 +41,25 @@
         }
       },
       "create": {
-
+        "message": {
+          "error": {
+            "created": "The promo code already exists.",
+            "format": "Incorrect promo code format.",
+            "length": "Incorrect promo code length."
+          }
+        },
+        "form": {
+          "title": "Create promo code",
+          "label": "Fill out the form below to create a promo code.",
+          "input": {
+            "text": "Promo code:",
+            "placeholder": "Enter promo code:",
+            "empty": "Promo code cannot be empty."
+          },
+          "toggle": {
+            "text": "Will the promo code be temporary?"
+          }
+        }
       },
       "delete": {
 

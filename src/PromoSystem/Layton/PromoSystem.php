@@ -7,7 +7,6 @@ namespace PromoSystem\Layton;
 use pocketmine\plugin\PluginBase;
 use PromoSystem\Layton\command\PromoAdminCommand;
 use PromoSystem\Layton\command\PromoCommand;
-use PromoSystem\Layton\form\PromoActivateForm;
 use PromoSystem\Layton\provider\SQLite3Provider;
 use PromoSystem\Layton\translation\TranslationManager;
 

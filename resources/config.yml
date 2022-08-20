@@ -4,4 +4,8 @@ provider: "sqlite3"
 
 # en / ru
 language: "en"
+
+promo:
+  minimum_length: 5
+  maximum_length: 10
 ...

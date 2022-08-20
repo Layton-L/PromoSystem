@@ -20,7 +20,7 @@ class PromoAdminForm extends SimpleForm {
 
             switch ($data) {
                 case 0:
-                    //TODO: Create PromoCreateForm
+                    $player->sendForm(new PromoCreateForm());
                     break;
                 case 1:
                     //TODO: Create PromoDeleteForm
@@ -31,11 +31,11 @@ class PromoAdminForm extends SimpleForm {
             }
         });
 
-        $this->setTitle($queryHelper->getTranslatedString("module.promo-admin.simple.form.title"));
+        $this->setTitle($queryHelper->getTranslatedString("module.admin.simple.form.title"));
 
-        $this->addButton($queryHelper->getTranslatedString("module.promo-admin.simple.form.button.create"));
-        $this->addButton($queryHelper->getTranslatedString("module.promo-admin.simple.form.button.delete"));
-        $this->addButton($queryHelper->getTranslatedString("module.promo-admin.simple.form.button.view"));
+        $this->addButton($queryHelper->getTranslatedString("module.admin.simple.form.button.create"));
+        $this->addButton($queryHelper->getTranslatedString("module.admin.simple.form.button.delete"));
+        $this->addButton($queryHelper->getTranslatedString("module.admin.simple.form.button.view"));
     }
 
 }
