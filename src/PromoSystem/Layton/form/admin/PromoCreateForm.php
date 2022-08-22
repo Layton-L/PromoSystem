@@ -19,8 +19,8 @@ class PromoCreateForm extends CustomForm {
             $dataManager = PromoSystem::getInstance()->getDataManager();
             $promoSettings = PromoSystem::getInstance()->getConfig()->get("promo");
 
-            $promo = $data["promo"];
-            $amount = $data["amount"];
+            $promo = trim($data["promo"]);
+            $amount = trim($data["amount"]);
             $type = $data["type"];
 
             if ($promo === "") {

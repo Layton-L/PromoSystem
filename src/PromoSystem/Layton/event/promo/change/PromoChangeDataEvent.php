@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace PromoSystem\Layton\event\promo;
+namespace PromoSystem\Layton\event\promo\change;
 
 use pocketmine\event\Event;
 

@@ -42,13 +42,15 @@
       },
       "create": {
         "message": {
+          "successful": "You have successfully created a promo code.",
           "error": {
             "promo": {
               "created": "The promo code already exists.",
               "format": "Incorrect promo code format.",
               "length": "Incorrect promo code length."
             },
-            "amount": "The bonus amount must be an integer greater than 0."
+            "amount": "The bonus amount must be an integer greater than 0.",
+            "action_time": "The action time must be an integer greater than 0."
           }
         },
         "form": {

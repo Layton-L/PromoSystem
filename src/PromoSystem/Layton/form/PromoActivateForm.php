@@ -19,7 +19,7 @@ class PromoActivateForm extends CustomForm {
             if ($data === null) return;
 
             $dataManager = PromoSystem::getInstance()->getDataManager();
-            $promo = $data["promo"];
+            $promo = trim($data["promo"]);
 
             if ($promo === "") {
                 $player->sendForm(new PromoActivateForm("module.promo.form.input.empty"));

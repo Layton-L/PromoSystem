@@ -16,8 +16,6 @@ class PromoAdminForm extends SimpleForm {
         parent::__construct(function (Player $player, int $data = null) use ($queryHelper) {
             if ($data === null) return;
 
-            $dataManager = PromoSystem::getInstance()->getDataManager();
-
             switch ($data) {
                 case 0:
                     $player->sendForm(new PromoCreateForm());

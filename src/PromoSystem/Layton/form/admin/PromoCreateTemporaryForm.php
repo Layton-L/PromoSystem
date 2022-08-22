@@ -16,6 +16,22 @@ class PromoCreateTemporaryForm extends CustomForm {
 
         parent::__construct(function (Player $player, array $data = null) use ($promo, $amount, $queryHelper) {
             if ($data === null) return;
+
+            $dataManager = PromoSystem::getInstance()->getDataManager();
+            $actionTime = trim($data["action_time"]);
+
+            if ($actionTime === "") {
+                $player->sendForm(new PromoCreateTemporaryForm($promo, $amount, "module.admin.create.temporary.form.input.empty"));
+                return;
+            }
+
+            if (!(is_int($actionTime) || ctype_digit($actionTime) && (int) $actionTime > 0)) {
+                $player->sendForm(new PromoCreateTemporaryForm($promo, $amount,"module.admin.create.message.error.action_time"));
+                return;
+            }
+
+            $dataManager->createTemporary($promo, (int) $actionTime, $amount);
+            $player->sendMessage($queryHelper->getTranslatedString("module.admin.create.message.successful"));
         });
         $this->setTitle($queryHelper->getTranslatedString("module.admin.create.temporary.form.title"));
 
