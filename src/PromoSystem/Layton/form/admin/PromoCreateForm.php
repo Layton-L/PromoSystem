@@ -20,30 +20,42 @@ class PromoCreateForm extends CustomForm {
             $promoSettings = PromoSystem::getInstance()->getConfig()->get("promo");
 
             $promo = $data["promo"];
+            $amount = $data["amount"];
             $type = $data["type"];
 
             if ($promo === "") {
-                $player->sendForm(new PromoCreateForm("module.admin.create.form.input.empty"));
+                $player->sendForm(new PromoCreateForm("module.admin.create.form.input.promo.empty"));
                 return;
             }
 
             if ($dataManager->isCreated($promo)) {
-                $player->sendForm(new PromoCreateForm("module.admin.create.message.error.created"));
+                $player->sendForm(new PromoCreateForm("module.admin.create.message.error.promo.created"));
                 return;
             }
 
             if (!preg_match("/^[a-z0-9]+$/i", $promo)) {
-                $player->sendForm(new PromoCreateForm("module.admin.create.message.error.format"));
+                $player->sendForm(new PromoCreateForm("module.admin.create.message.error.promo.format"));
                 return;
             }
 
             if (strlen($promo) < $promoSettings["minimum_length"] || strlen($promo) > $promoSettings["maximum_length"]) {
-                $player->sendForm(new PromoCreateForm("module.admin.create.message.error.length"));
+                $player->sendForm(new PromoCreateForm("module.admin.create.message.error.promo.length"));
                 return;
             }
 
+            if ($amount === "") {
+                $player->sendForm(new PromoCreateForm("module.admin.create.form.input.amount.empty"));
+                return;
+            }
+
+            if (!(is_int($amount) || ctype_digit($amount) && (int) $amount > 0)) {
+                $player->sendForm(new PromoCreateForm("module.admin.create.message.error.amount"));
+                return;
+            }
+
+            $amount = (int) $amount;
             if ($type) {
-                //TODO: Create PromoCreateTemporaryForm
+                $player->sendForm(new PromoCreateTemporaryForm($promo, $amount));
             } else {
                 //TODO: Create PromoCreateUsesLimitedForm
             }
@@ -56,7 +68,8 @@ class PromoCreateForm extends CustomForm {
             $this->addLabel($queryHelper->getTranslatedString($error));
         }
 
-        $this->addInput($queryHelper->getTranslatedString("module.admin.create.form.input.text"), $queryHelper->getTranslatedString("module.admin.create.form.input.placeholder"), "", "promo");
+        $this->addInput($queryHelper->getTranslatedString("module.admin.create.form.input.promo.text"), $queryHelper->getTranslatedString("module.admin.create.form.input.promo.placeholder"), "", "promo");
+        $this->addInput($queryHelper->getTranslatedString("module.admin.create.form.input.amount.text"), $queryHelper->getTranslatedString("module.admin.create.form.input.amount.placeholder"), "", "amount");
         $this->addToggle($queryHelper->getTranslatedString("module.admin.create.form.toggle.text"), null, "type");
     }
 

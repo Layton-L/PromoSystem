@@ -43,21 +43,42 @@
       "create": {
         "message": {
           "error": {
-            "created": "The promo code already exists.",
-            "format": "Incorrect promo code format.",
-            "length": "Incorrect promo code length."
+            "promo": {
+              "created": "The promo code already exists.",
+              "format": "Incorrect promo code format.",
+              "length": "Incorrect promo code length."
+            },
+            "amount": "The bonus amount must be an integer greater than 0."
           }
         },
         "form": {
           "title": "Create promo code",
           "label": "Fill out the form below to create a promo code.",
           "input": {
-            "text": "Promo code:",
-            "placeholder": "Enter promo code:",
-            "empty": "Promo code cannot be empty."
+            "promo": {
+              "text": "Promo code:",
+              "placeholder": "Enter promo code:",
+              "empty": "Promo code cannot be empty."
+            },
+            "amount": {
+              "text": "Bonus amount:",
+              "placeholder": "Enter bonus amount:",
+              "empty": "The bonus amount cannot be empty."
+            }
           },
           "toggle": {
             "text": "Will the promo code be temporary?"
+          }
+        },
+        "temporary": {
+          "form": {
+            "title": "Time settings",
+            "label": "To create a temporary promo code, fill out the form below.",
+            "input": {
+              "text": "Action time:",
+              "placeholder": "Enter action time:",
+              "empty": "The action time cannot be empty."
+            }
           }
         }
       },
