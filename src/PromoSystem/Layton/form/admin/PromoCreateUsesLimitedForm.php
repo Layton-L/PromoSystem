@@ -8,6 +8,7 @@ namespace PromoSystem\Layton\form\admin;
 use jojoe77777\FormAPI\CustomForm;
 use pocketmine\player\Player;
 use PromoSystem\Layton\PromoSystem;
+use PromoSystem\Layton\response\Response;
 
 class PromoCreateUsesLimitedForm extends CustomForm {
 
@@ -30,7 +31,11 @@ class PromoCreateUsesLimitedForm extends CustomForm {
                 return;
             }
 
-            $dataManager->createUsesLimited($promo, (int) $max_uses, $amount);
+            if ($dataManager->createUsesLimited($promo, (int) $max_uses, $amount) instanceof Response) {
+                $player->sendForm(new PromoCreateUsesLimitedForm($promo, $amount,"module.admin.create.message.error.cancelled"));
+                return;
+            }
+
             $player->sendMessage($queryHelper->getTranslatedString("module.admin.create.message.successful"));
         });
         $this->setTitle($queryHelper->getTranslatedString("module.admin.create.uses_limited.form.title"));

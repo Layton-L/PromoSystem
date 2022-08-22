@@ -51,7 +51,8 @@
             },
             "amount": "The bonus amount must be an integer greater than 0.",
             "action_time": "The action time must be an integer greater than 0.",
-            "uses_limited": "The maximum count of uses must be an integer greater than 0."
+            "uses_limited": "The maximum count of uses must be an integer greater than 0.",
+            "cancelled": "An error occurred while creating the promo code."
           }
         },
         "form": {
@@ -97,7 +98,22 @@
         }
       },
       "delete": {
-
+        "message": {
+          "successful": "You have successfully delete the promo code.",
+          "error": {
+            "uncreated": "Promo code does not exist.",
+            "cancelled": "An error occurred while deleting the promo code."
+          }
+        },
+        "form": {
+          "title": "Delete promo code",
+          "label": "To delete a promo code, fill out the form below.",
+          "input": {
+            "text": "Promo code:",
+            "placeholder": "Enter promo code:",
+            "empty": "Promo code cannot be empty."
+          }
+        }
       },
       "view": {
 

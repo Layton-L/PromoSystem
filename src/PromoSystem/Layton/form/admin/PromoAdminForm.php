@@ -21,7 +21,7 @@ class PromoAdminForm extends SimpleForm {
                     $player->sendForm(new PromoCreateForm());
                     break;
                 case 1:
-                    //TODO: Create PromoDeleteForm
+                    $player->sendForm(new PromoDeleteForm());
                     break;
                 case 2:
                     //TODO: Create PromoViewAllForm
