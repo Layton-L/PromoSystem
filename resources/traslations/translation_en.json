@@ -35,8 +35,7 @@
           "title": "Promo code management",
           "button": {
             "create": "Create promo code",
-            "delete": "Delete promo code",
-            "view": "View promo codes"
+            "delete": "Delete promo code"
           }
         }
       },
@@ -114,9 +113,6 @@
             "empty": "Promo code cannot be empty."
           }
         }
-      },
-      "view": {
-
       }
     }
   }

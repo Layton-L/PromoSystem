@@ -27,12 +27,12 @@ class PromoCreateTemporaryForm extends CustomForm {
             }
 
             if (!(ctype_digit($actionTime) && (int) $actionTime > 0)) {
-                $player->sendForm(new PromoCreateTemporaryForm($promo, $amount,"module.admin.create.message.error.action_time"));
+                $player->sendForm(new PromoCreateTemporaryForm($promo, $amount, "module.admin.create.message.error.action_time"));
                 return;
             }
 
             if ($dataManager->createTemporary($promo, (int) $actionTime, $amount) instanceof Response) {
-                $player->sendForm(new PromoCreateTemporaryForm($promo, $amount,"module.admin.create.message.error.cancelled"));
+                $player->sendForm(new PromoCreateTemporaryForm($promo, $amount, "module.admin.create.message.error.cancelled"));
                 return;
             }
 

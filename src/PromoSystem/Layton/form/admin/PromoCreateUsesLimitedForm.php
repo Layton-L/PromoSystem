@@ -27,12 +27,12 @@ class PromoCreateUsesLimitedForm extends CustomForm {
             }
 
             if (!(ctype_digit($max_uses) && (int) $max_uses > 0)) {
-                $player->sendForm(new PromoCreateUsesLimitedForm($promo, $amount,"module.admin.create.message.error.uses_limited"));
+                $player->sendForm(new PromoCreateUsesLimitedForm($promo, $amount, "module.admin.create.message.error.uses_limited"));
                 return;
             }
 
             if ($dataManager->createUsesLimited($promo, (int) $max_uses, $amount) instanceof Response) {
-                $player->sendForm(new PromoCreateUsesLimitedForm($promo, $amount,"module.admin.create.message.error.cancelled"));
+                $player->sendForm(new PromoCreateUsesLimitedForm($promo, $amount, "module.admin.create.message.error.cancelled"));
                 return;
             }
 
