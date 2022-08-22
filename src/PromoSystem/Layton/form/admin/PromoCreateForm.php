@@ -48,7 +48,7 @@ class PromoCreateForm extends CustomForm {
                 return;
             }
 
-            if (!(is_int($amount) || ctype_digit($amount) && (int) $amount > 0)) {
+            if (!(ctype_digit($amount) && (int) $amount > 0)) {
                 $player->sendForm(new PromoCreateForm("module.admin.create.message.error.amount"));
                 return;
             }
@@ -57,7 +57,7 @@ class PromoCreateForm extends CustomForm {
             if ($type) {
                 $player->sendForm(new PromoCreateTemporaryForm($promo, $amount));
             } else {
-                //TODO: Create PromoCreateUsesLimitedForm
+                $player->sendForm(new PromoCreateUsesLimitedForm($promo, $amount));
             }
         });
         $this->setTitle($queryHelper->getTranslatedString("module.admin.create.form.title"));

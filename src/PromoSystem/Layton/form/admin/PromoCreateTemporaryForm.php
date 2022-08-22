@@ -25,7 +25,7 @@ class PromoCreateTemporaryForm extends CustomForm {
                 return;
             }
 
-            if (!(is_int($actionTime) || ctype_digit($actionTime) && (int) $actionTime > 0)) {
+            if (!(ctype_digit($actionTime) && (int) $actionTime > 0)) {
                 $player->sendForm(new PromoCreateTemporaryForm($promo, $amount,"module.admin.create.message.error.action_time"));
                 return;
             }

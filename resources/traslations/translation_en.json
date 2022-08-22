@@ -50,7 +50,8 @@
               "length": "Incorrect promo code length."
             },
             "amount": "The bonus amount must be an integer greater than 0.",
-            "action_time": "The action time must be an integer greater than 0."
+            "action_time": "The action time must be an integer greater than 0.",
+            "uses_limited": "The maximum count of uses must be an integer greater than 0."
           }
         },
         "form": {
@@ -74,12 +75,23 @@
         },
         "temporary": {
           "form": {
-            "title": "Time settings",
+            "title": "Time setting",
             "label": "To create a temporary promo code, fill out the form below.",
             "input": {
               "text": "Action time:",
               "placeholder": "Enter action time:",
               "empty": "The action time cannot be empty."
+            }
+          }
+        },
+        "uses_limited": {
+          "form": {
+            "title": "Setting the maximum number of uses",
+            "label": "To create an uses limited promo code, fill out the form below.",
+            "input": {
+              "text": "Maximum count of uses:",
+              "placeholder": "Enter maximum count of uses:",
+              "empty": "The maximum count of uses cannot be empty."
             }
           }
         }
