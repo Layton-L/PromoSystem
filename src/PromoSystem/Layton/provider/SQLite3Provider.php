@@ -68,6 +68,19 @@ class SQLite3Provider implements Provider {
         return $this->database->changes() === 1;
     }
 
+    public function getAllPromos(): array {
+        $query = $this->database->query("SELECT `promo` FROM `promos`");
+        $promos = [];
+
+        $i = 0;
+        while ($result = $query->fetchArray(SQLITE3_ASSOC)) {
+            $promos[$i] = $result["promo"];
+            $i++;
+        }
+
+        return $promos;
+    }
+
     public function getUses(string $promo): int {
         $result = $this->database->query("SELECT `uses` FROM `promos` WHERE `promo` = '" . $promo ."'");
         return $result->fetchArray(SQLITE3_ASSOC)["uses"];
@@ -174,6 +187,21 @@ class SQLite3Provider implements Provider {
 
         $statement->execute();
         return $this->database->changes() === 1;
+    }
+
+    public function getUserPromos(Player $player): array {
+        $name = strtolower($player->getName());
+        $query = $this->database->query("SELECT `promo` FROM `users` WHERE name = '" . $name . "'");
+
+        $promos = [];
+        $i = 0;
+
+        while ($result = $query->fetchArray(SQLITE3_ASSOC)) {
+            $promos[$i] = $result["promo"];
+            $i++;
+        }
+
+        return $promos;
     }
 
 }

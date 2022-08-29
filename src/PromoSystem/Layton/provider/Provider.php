@@ -20,6 +20,8 @@ interface Provider {
 
     public function delete(string $promo): bool;
 
+    public function getAllPromos(): array;
+
     public function getUses(string $promo): int;
 
     public function setUses(string $promo, int $uses): bool;
@@ -45,5 +47,7 @@ interface Provider {
     public function addToUser(Player $player, string $promo): bool;
 
     public function deleteFromUser(Player $player, string $promo): bool;
+
+    public function getUserPromos(Player $player): array;
 
 }
