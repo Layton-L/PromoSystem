@@ -92,6 +92,10 @@ class DataManager {
         }
     }
 
+    public function getAllPromos(): array {
+        return $this->provider->getAllPromos();
+    }
+
     public function getUses(string $promo): int|Response {
         if ($this->provider->isCreated($promo)) {
             return $this->provider->getUses($promo);
@@ -231,6 +235,10 @@ class DataManager {
         } else {
             return new Response(CodeTypes::PROMO_NOT_CREATED);
         }
+    }
+
+    public function getUserPromos(Player $player): array {
+        return $this->provider->getUserPromos($player);
     }
 
 }
