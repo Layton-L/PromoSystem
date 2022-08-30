@@ -8,6 +8,10 @@
       "description": "Allows users to manage promo codes"
     }
   },
+  "promo": {
+    "temporary": "Temporary",
+    "uses_limited": "Uses limited"
+  },
   "module": {
     "promo": {
       "message": {
@@ -35,7 +39,9 @@
           "title": "Promo code management",
           "button": {
             "create": "Create promo code",
-            "delete": "Delete promo code"
+            "delete": "Delete promo code",
+            "info": "Information about promo code",
+            "view": "View promo codes"
           }
         }
       },
@@ -107,6 +113,23 @@
         "form": {
           "title": "Delete promo code",
           "label": "To delete a promo code, fill out the form below.",
+          "input": {
+            "text": "Promo code:",
+            "placeholder": "Enter promo code:",
+            "empty": "Promo code cannot be empty."
+          }
+        }
+      },
+      "info": {
+        "message": {
+          "successful": "Information about the promo code (%promo%):Bonus amount: %amount%\nDate of creation: %creation_time%\nCount of uses: %uses%\nCount of max uses: %max_uses%\nAction time: %action_time% sec.\n\nPromo code type: %promo_type%",
+          "error": {
+            "uncreated": "Promo code does not exist."
+          }
+        },
+        "form": {
+          "title": "Information about the promo code",
+          "label": "To view information about the promo code, fill out the form below.",
           "input": {
             "text": "Promo code:",
             "placeholder": "Enter promo code:",
