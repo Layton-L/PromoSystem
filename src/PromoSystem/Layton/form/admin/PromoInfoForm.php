@@ -13,7 +13,7 @@ class PromoInfoForm extends CustomForm {
     public function __construct(string $error = null) {
         $queryHelper = PromoSystem::getInstance()->getTranslationManager()->getQueryHelper();
 
-        parent::__construct(function (Player $player, array $data = []) use ($queryHelper) {
+        parent::__construct(function (Player $player, array $data = null) use ($queryHelper) {
             if ($data === null) return;
 
             $dataManager = PromoSystem::getInstance()->getDataManager();
