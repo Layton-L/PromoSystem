@@ -30,9 +30,7 @@ use PromoSystem\Layton\PromoSystem;
 class PromoAdminForm extends SimpleForm {
 
     public function __construct(string $error = null) {
-        $queryHelper = PromoSystem::getInstance()->getTranslationManager()->getQueryHelper();
-
-        parent::__construct(function (Player $player, int $data = null) use ($queryHelper) {
+        parent::__construct(function (Player $player, int $data = null) {
             if ($data === null) return;
 
             switch ($data) {
@@ -50,7 +48,7 @@ class PromoAdminForm extends SimpleForm {
                     break;
             }
         });
-
+        $queryHelper = PromoSystem::getInstance()->getTranslationManager()->getQueryHelper();
         $this->setTitle($queryHelper->getTranslatedString("module.admin.simple.form.title"));
 
         $this->addButton($queryHelper->getTranslatedString("module.admin.simple.form.button.create"));
