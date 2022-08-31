@@ -6,7 +6,7 @@ projects:
   PromoSystem:
     path: ""
     libs:
-    - src: jojoe77777\FormAPI\libFormAPI
+    - src: jojoe77777\FormAPI
       version: ^2.1.0
       branch: master
 ...
