@@ -5,6 +5,10 @@ branches:
 projects:
   PromoSystem:
     path: ""
+    libs:
+      - src: jojoe77777/FormAPI/FormAPI
+        version: ^2.1.0
+        branch: master
     lint:
-      phpstan: false
+      phpstan: true
 ...
