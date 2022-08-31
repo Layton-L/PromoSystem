@@ -5,6 +5,7 @@ api: 4.0.0
 version: 2.0
 author: Layton
 
+php: [ 8.0 ]
 depend:
   - BedrockEconomy
   - FormAPI
