@@ -5,6 +5,10 @@ api: 4.0.0
 version: 2.0
 author: Layton
 
+depend:
+ - BedrockEconomy
+ - FormAPI
+
 permissions:
   promosystem.promo:
     default: true
