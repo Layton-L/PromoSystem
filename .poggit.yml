@@ -4,7 +4,6 @@ branches:
 - master
 projects:
   PromoSystem:
-    path: PromoSystem/
     lint:
       phpstan: false
 ...
