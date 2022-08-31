@@ -5,8 +5,8 @@ branches:
 projects:
   PromoSystem:
     libs:
-      - src: jojoe77777/FormAPI/libFormAPI
-        version: ^2.1.0
+      #- src: jojoe77777/FormAPI/libFormAPI
+      #  version: ^2.1.0
       - src: cooldogedev/BedrockEconomy/BedrockEconomy
         version: ^2.0.8
 ...
