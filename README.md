@@ -17,5 +17,5 @@
 * /promo-admin (op) - *Allows users to manage promo codes* (**promosystem.admin**)
 
 ### Dependencies
-* [FormAPI](https://github.com/jojoe77777/FormAPI/releases/tag/2.1.0)
-* [BedrockEconomy](https://github.com/cooldogedev/BedrockEconomy/releases/tag/v2.0.7)
+* [FormAPI](https://github.com/jojoe77777/FormAPI)
+* [BedrockEconomy](https://github.com/cooldogedev/BedrockEconomy)
