@@ -136,6 +136,15 @@
             "empty": "Promo code cannot be empty."
           }
         }
+      },
+      "list": {
+        "form": {
+          "title": "List of promo codes (Page: %page%)",
+          "button": {
+            "back": "Back",
+            "forward": "Forward"
+          }
+        }
       }
     }
   }

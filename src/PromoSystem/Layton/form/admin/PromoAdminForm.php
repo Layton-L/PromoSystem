@@ -29,7 +29,7 @@ use PromoSystem\Layton\PromoSystem;
 
 class PromoAdminForm extends SimpleForm {
 
-    public function __construct(string $error = null) {
+    public function __construct() {
         parent::__construct(function (Player $player, int $data = null) {
             if ($data === null) return;
 
@@ -44,7 +44,7 @@ class PromoAdminForm extends SimpleForm {
                     $player->sendForm(new PromoInfoForm());
                     break;
                 case 3:
-                    //TODO: Create PromoViewAllForm
+                    $player->sendForm(new PromoListForm());
                     break;
             }
         });
