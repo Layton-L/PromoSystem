@@ -25,6 +25,7 @@ namespace PromoSystem\Layton\form\admin;
 
 use jojoe77777\FormAPI\CustomForm;
 use pocketmine\player\Player;
+use PromoSystem\Layton\data\DataHelper;
 use PromoSystem\Layton\PromoSystem;
 
 class PromoInfoForm extends CustomForm {
@@ -48,20 +49,7 @@ class PromoInfoForm extends CustomForm {
                 return;
             }
 
-            $message = str_replace("%promo%", $promo, $queryHelper->getTranslatedString("module.admin.info.message.successful"));
-            $message = str_replace("%amount%", (string) $dataManager->getAmount($promo), $message);
-            $message = str_replace("%creation_time%", date("F j, Y, g:i a", $dataManager->getCreationTime($promo)), $message);
-            $message = str_replace("%uses%", (string) $dataManager->getUses($promo), $message);
-            $message = str_replace("%max_uses%", (string) $dataManager->getMaxUses($promo), $message);
-            $message = str_replace("%action_time%", (string) $dataManager->getActionTime($promo), $message);
-
-            if ($dataManager->isUsesLimited($promo)) {
-                $type = $queryHelper->getTranslatedString("promo.uses_limited");
-            } else {
-                $type = $queryHelper->getTranslatedString("promo.temporary");
-            }
-
-            $player->sendMessage(str_replace("%promo_type%", $type, $message));
+            $player->sendMessage(DataHelper::getFormattedPromoString($promo));
         });
         $this->setTitle($queryHelper->getTranslatedString("module.admin.info.form.title"));
 

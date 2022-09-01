@@ -1,11 +1,18 @@
 {
   "name": "en",
+  "status": {
+    "loaded": "The plugin has been successfully loaded.",
+    "enabled": "The plugin has been successfully enabled."
+  },
   "command": {
     "promo": {
       "description": "Allows users to activate promo code"
     },
     "promo-admin": {
       "description": "Allows users to manage promo codes"
+    },
+    "promo-languages": {
+      "description": "Allows users to know supported languages"
     }
   },
   "promo": {

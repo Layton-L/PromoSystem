@@ -21,7 +21,7 @@
 
 declare(strict_types = 1);
 
-namespace PromoSystem\Layton;
+namespace PromoSystem\Layton\data;
 
 use pocketmine\player\Player;
 use PromoSystem\Layton\event\promo\change\PromoChangeActionTimeEvent;

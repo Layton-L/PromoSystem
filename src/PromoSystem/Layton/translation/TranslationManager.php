@@ -29,6 +29,8 @@ class TranslationManager {
 
     private string $languageName = "en";
 
+    private array $languagesNames = [];
+
     private array $translations = [];
 
     private QueryHelper $queryHelper;
@@ -39,6 +41,8 @@ class TranslationManager {
                 $filename = $resource->getFilename();
                 if (str_starts_with($filename, "translation_") and str_ends_with($filename, ".json")) {
                     $decodeArray = json_decode(file_get_contents($resource->getPathname()), true);
+
+                    $this->languagesNames[] = $decodeArray["name"];
                     $this->translations[$decodeArray["name"]] = $decodeArray;
                 }
             }
@@ -54,6 +58,10 @@ class TranslationManager {
 
     public function getLanguageName(): string {
         return $this->languageName;
+    }
+
+    public function getLanguagesNames(): array {
+        return $this->languagesNames;
     }
 
     public function getQueryHelper(): QueryHelper {

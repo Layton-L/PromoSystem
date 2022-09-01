@@ -26,6 +26,8 @@ namespace PromoSystem\Layton;
 use pocketmine\plugin\PluginBase;
 use PromoSystem\Layton\command\PromoAdminCommand;
 use PromoSystem\Layton\command\PromoCommand;
+use PromoSystem\Layton\command\PromoLanguagesCommand;
+use PromoSystem\Layton\data\DataManager;
 use PromoSystem\Layton\provider\SQLite3Provider;
 use PromoSystem\Layton\translation\TranslationManager;
 
@@ -52,10 +54,12 @@ class PromoSystem extends PluginBase {
         $this->translationManager = new TranslationManager($this);
         $this->dataManager = new DataManager($provider);
         $this->registerCommands();
+
+        $this->getLogger()->info($this->translationManager->getQueryHelper()->getTranslatedString("status.loaded"));
     }
 
     public function onEnable(): void {
-
+        $this->getLogger()->info($this->translationManager->getQueryHelper()->getTranslatedString("status.enabled"));
     }
 
     private function registerCommands(): void {
@@ -64,7 +68,8 @@ class PromoSystem extends PluginBase {
 
         $map->registerAll("PromoSystem", [
             new PromoCommand("promo", $queryHelper->getTranslatedString("command.promo.description")),
-            new PromoAdminCommand("promo-admin", $queryHelper->getTranslatedString("command.promo-admin.description"))
+            new PromoAdminCommand("promo-admin", $queryHelper->getTranslatedString("command.promo-admin.description")),
+            new PromoLanguagesCommand("promo-languages", $queryHelper->getTranslatedString("command.promo-languages.description"))
         ]);
     }
 

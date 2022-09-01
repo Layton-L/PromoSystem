@@ -25,6 +25,7 @@ namespace PromoSystem\Layton\form\admin;
 
 use jojoe77777\FormAPI\SimpleForm;
 use pocketmine\player\Player;
+use PromoSystem\Layton\data\DataHelper;
 use PromoSystem\Layton\PromoSystem;
 
 class PromoListForm extends SimpleForm {
@@ -36,6 +37,11 @@ class PromoListForm extends SimpleForm {
         $pages = array_chunk($dataManager->getAllPromos(), 5);
         parent::__construct(function (Player $player, int $data = null) use ($queryHelper, $dataManager, $pages, $index) {
             if ($data === null) return;
+
+            if (count($pages) == 0) {
+                $player->sendForm(new PromoListForm());
+                return;
+            }
 
             $lastIndex = array_key_last($pages[$index]);
             if ($data === $lastIndex + 1) {
@@ -61,22 +67,8 @@ class PromoListForm extends SimpleForm {
             }
 
             $promo = $pages[$index][$data];
-
             if ($dataManager->isCreated($promo)) {
-                $message = str_replace("%promo%", $promo, $queryHelper->getTranslatedString("module.admin.info.message.successful"));
-                $message = str_replace("%amount%", (string)$dataManager->getAmount($promo), $message);
-                $message = str_replace("%creation_time%", date("F j, Y, g:i a", $dataManager->getCreationTime($promo)), $message);
-                $message = str_replace("%uses%", (string)$dataManager->getUses($promo), $message);
-                $message = str_replace("%max_uses%", (string)$dataManager->getMaxUses($promo), $message);
-                $message = str_replace("%action_time%", (string)$dataManager->getActionTime($promo), $message);
-
-                if ($dataManager->isUsesLimited($promo)) {
-                    $type = $queryHelper->getTranslatedString("promo.uses_limited");
-                } else {
-                    $type = $queryHelper->getTranslatedString("promo.temporary");
-                }
-
-                $player->sendMessage(str_replace("%promo_type%", $type, $message));
+                $player->sendMessage(DataHelper::getFormattedPromoString($promo));
             } else {
                 $player->sendMessage($queryHelper->getTranslatedString("module.admin.info.message.error.uncreated"));
             }

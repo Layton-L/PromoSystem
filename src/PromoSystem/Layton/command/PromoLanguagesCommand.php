@@ -26,28 +26,30 @@ namespace PromoSystem\Layton\command;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\player\Player;
-use PromoSystem\Layton\form\admin\PromoAdminForm;
+use PromoSystem\Layton\PromoSystem;
 
-class PromoAdminCommand extends Command {
+class PromoLanguagesCommand extends Command {
 
-    public const PERMISSION = "promosystem.admin";
+    public const PERMISSION = "promosystem.languages";
 
     public function __construct(string $name, string $description) {
         parent::__construct($name, $description);
-        $this->setPermission(PromoAdminCommand::PERMISSION);
+        $this->setPermission(PromoLanguagesCommand::PERMISSION);
     }
 
     public function execute(CommandSender $sender, string $commandLabel, array $args) {
-        if (!$sender instanceof Player || !$sender->hasPermission(PromoAdminCommand::PERMISSION)) {
+        if (!$sender->hasPermission(PromoLanguagesCommand::PERMISSION)) {
             return;
         }
 
         if (count($args) > 0) {
-            $sender->sendMessage("/promo-admin");
+            $sender->sendMessage("/promo-languages");
             return;
         }
 
-        $sender->sendForm(new PromoAdminForm());
+        foreach (PromoSystem::getInstance()->getTranslationManager()->getLanguagesNames() as $index => $languageName) {
+            $sender->sendMessage($index + 1 . ". " . $languageName);
+        }
     }
 
 }
