@@ -6,10 +6,6 @@ version: 2.1
 author: Layton
 php: 8.0
 
-depend:
-  - BedrockEconomy
-  - FormAPI
-
 permissions:
   promosystem.promo:
     default: true
