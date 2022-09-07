@@ -27,12 +27,12 @@ use PromoSystem\Layton\enums\CodeType;
 
 class Response {
 
-    public function __construct(private CodeType $code) {
+    public function __construct(private CodeType $codeType) {
 
     }
 
-    public function getCode(): CodeType {
-        return $this->code;
+    public function getCodeType(): CodeType {
+        return $this->codeType;
     }
 
 }
