@@ -21,12 +21,26 @@
 
 declare(strict_types = 1);
 
-namespace PromoSystem\Layton\types;
+namespace PromoSystem\Layton\enums;
 
-class PromoTypes {
+enum CodeType: int {
 
-    public const TEMPORARY = "temporary";
+    case PROMO_UNACTIVATED_CANCELLED = -1;
 
-    public const USES_LIMITED = "uses_limited";
+    case PROMO_NOT_ACTIVATED = -2;
+
+    case PROMO_ACTIVATED_CANCELLED = -3;
+
+    case PROMO_ALREADY_ACTIVATED = -4;
+
+    case PROMO_NOT_CREATED = -5;
+
+    case PROMO_ALREADY_EXISTS = -6;
+
+    case PROMO_CREATION_CANCELLED = -7;
+
+    case PROMO_DELETION_CANCELLED = -8;
+
+    case PROMO_INVALID_TYPE = -9;
 
 }

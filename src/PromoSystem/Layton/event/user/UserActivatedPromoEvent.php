@@ -24,19 +24,20 @@ declare(strict_types = 1);
 namespace PromoSystem\Layton\event\user;
 
 use pocketmine\player\Player;
+use PromoSystem\Layton\enums\PromoType;
 
 class UserActivatedPromoEvent extends UserEvent {
 
-    public function __construct(string $promo, private Player $user, private string $promoType) {
-        parent::__construct($promo);
+    public function __construct(Player $user, private string $promo, private PromoType $promoType) {
+        parent::__construct($user);
     }
 
-    public function getUser(): Player {
-        return $this->user;
+    public function getPromo(): string {
+        return $this->promo;
     }
 
     public function getPromoType(): string {
-        return $this->promoType;
+        return $this->promoType->value;
     }
 
 }

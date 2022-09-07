@@ -23,16 +23,17 @@ declare(strict_types = 1);
 
 namespace PromoSystem\Layton\event\user;
 
+use pocketmine\player\Player;
 use PromoSystem\Layton\event\CancellableEvent;
 
 abstract class UserEvent extends CancellableEvent {
 
-    public function __construct(private string $promo) {
+    public function __construct(private Player $user) {
         parent::__construct();
     }
 
-    public function getPromo(): string {
-        return $this->promo;
+    public function getUser(): Player {
+        return $this->user;
     }
 
 }

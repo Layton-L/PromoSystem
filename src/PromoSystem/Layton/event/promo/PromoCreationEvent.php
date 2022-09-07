@@ -23,14 +23,16 @@ declare(strict_types = 1);
 
 namespace PromoSystem\Layton\event\promo;
 
+use PromoSystem\Layton\enums\PromoType;
+
 class PromoCreationEvent extends PromoEvent {
 
-    public function __construct(string $promo, private string $promoType) {
+    public function __construct(string $promo, private PromoType $promoType) {
         parent::__construct($promo);
     }
 
     public function getPromoType(): string {
-        return $this->promoType;
+        return $this->promoType->value;
     }
 
 }

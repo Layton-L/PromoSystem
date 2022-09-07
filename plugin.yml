@@ -2,7 +2,7 @@ name: PromoSystem
 main: PromoSystem\Layton\PromoSystem
 api: 4.0.0
 
-version: 2.1
+version: 2.2
 author: Layton
 php: 8.0
 

@@ -23,14 +23,16 @@ declare(strict_types = 1);
 
 namespace PromoSystem\Layton\response;
 
+use PromoSystem\Layton\enums\CodeType;
+
 class Response {
 
-    public function __construct(private int $code) {
+    public function __construct(private CodeType $code) {
 
     }
 
     public function getCode(): int {
-        return $this->code;
+        return $this->code->value;
     }
 
 }
