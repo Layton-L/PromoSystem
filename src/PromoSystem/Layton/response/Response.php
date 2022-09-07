@@ -31,8 +31,8 @@ class Response {
 
     }
 
-    public function getCode(): int {
-        return $this->code->value;
+    public function getCode(): CodeType {
+        return $this->code;
     }
 
 }

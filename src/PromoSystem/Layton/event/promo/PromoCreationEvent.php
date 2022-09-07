@@ -31,8 +31,8 @@ class PromoCreationEvent extends PromoEvent {
         parent::__construct($promo);
     }
 
-    public function getPromoType(): string {
-        return $this->promoType->value;
+    public function getPromoType(): PromoType {
+        return $this->promoType;
     }
 
 }
