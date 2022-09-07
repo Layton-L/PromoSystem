@@ -24,6 +24,8 @@ declare(strict_types = 1);
 namespace PromoSystem\Layton\data;
 
 use pocketmine\player\Player;
+use PromoSystem\Layton\enums\CodeType;
+use PromoSystem\Layton\enums\PromoType;
 use PromoSystem\Layton\event\promo\change\PromoChangeActionTimeEvent;
 use PromoSystem\Layton\event\promo\change\PromoChangeAmountEvent;
 use PromoSystem\Layton\event\promo\change\PromoChangeCreationTimeEvent;
@@ -35,8 +37,6 @@ use PromoSystem\Layton\event\user\UserActivatedPromoEvent;
 use PromoSystem\Layton\event\user\UserUnactivatedPromoEvent;
 use PromoSystem\Layton\provider\Provider;
 use PromoSystem\Layton\response\Response;
-use PromoSystem\Layton\enums\CodeType;
-use PromoSystem\Layton\enums\PromoType;
 
 class DataManager {
 
