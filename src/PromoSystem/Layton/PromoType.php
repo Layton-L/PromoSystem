@@ -21,16 +21,12 @@
 
 declare(strict_types = 1);
 
-namespace PromoSystem\Layton\event\promo;
+namespace PromoSystem\Layton;
 
-class PromoDeletionEvent extends PromoEvent {
+class PromoType {
 
-    public function __construct(string $promo, private string $promoType) {
-        parent::__construct($promo);
-    }
+    public const TEMPORARY = "temporary";
 
-    public function getPromoType(): string {
-        return $this->promoType;
-    }
+    public const USES_LIMITED = "uses_limited";
 
 }

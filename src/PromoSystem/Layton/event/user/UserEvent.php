@@ -23,6 +23,7 @@ declare(strict_types = 1);
 
 namespace PromoSystem\Layton\event\user;
 
+
 use pocketmine\player\Player;
 use PromoSystem\Layton\event\CancellableEvent;
 

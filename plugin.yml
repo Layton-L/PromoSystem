@@ -1,10 +1,11 @@
+---
 name: PromoSystem
 main: PromoSystem\Layton\PromoSystem
 api: 4.0.0
 
-version: 2.2
+version: 2.1
 author: Layton
-php: 8.1
+php: 8
 
 permissions:
   promosystem.promo:
@@ -13,3 +14,4 @@ permissions:
     default: op
   promosystem.languages:
     default: op
+...
