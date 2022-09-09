@@ -1,5 +1,5 @@
 ---
-# sqlite
+# sqlite3
 provider: "sqlite3"
 
 # en / ru

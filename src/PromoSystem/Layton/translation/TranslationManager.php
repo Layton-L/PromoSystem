@@ -23,11 +23,12 @@ declare(strict_types = 1);
 
 namespace PromoSystem\Layton\translation;
 
+use pocketmine\utils\Config;
 use PromoSystem\Layton\PromoSystem;
 
 class TranslationManager {
 
-    private string $languageName = "en";
+    private string $languageName = "eng";
 
     private array $languagesNames = [];
 
@@ -36,14 +37,23 @@ class TranslationManager {
     private QueryHelper $queryHelper;
 
     public function __construct(PromoSystem $plugin) {
+        @mkdir($translationDirectory = $plugin->getDataFolder() . "translations\\");
+
         foreach ($plugin->getResources() as $resource) {
             if ($resource->isFile()) {
                 $filename = $resource->getFilename();
                 if (str_starts_with($filename, "translation_") and str_ends_with($filename, ".json")) {
-                    $decodeArray = json_decode(file_get_contents($resource->getPathname()), true);
+                    $file = $translationDirectory . $filename;
 
-                    $this->languagesNames[] = $decodeArray["name"];
-                    $this->translations[$decodeArray["name"]] = $decodeArray;
+                    if (!file_exists($file)) {
+                        file_put_contents($file, file_get_contents($resource->getPathname()));
+                    }
+
+                    $translation = json_decode(file_get_contents($file), true);
+                    $languageName = $translation["name"];
+
+                    $this->languagesNames[] = $languageName;
+                    $this->translations[$languageName] = $translation;
                 }
             }
         }

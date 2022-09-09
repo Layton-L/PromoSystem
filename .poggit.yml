@@ -4,9 +4,6 @@ branches:
 - PM-4
 projects:
   PromoSystem:
-    #libs:
-    #  - src: jojoe77777/FormAPI/libFormAPI
-    #    version: ^2.1.0
     lint:
       phpstan: false
 ...
