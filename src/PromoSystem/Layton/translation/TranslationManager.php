@@ -30,8 +30,6 @@ class TranslationManager {
 
     private string $languageName = "eng";
 
-    private array $languagesNames = [];
-
     private array $translations = [];
 
     private QueryHelper $queryHelper;
@@ -50,10 +48,7 @@ class TranslationManager {
                     }
 
                     $translation = json_decode(file_get_contents($file), true);
-                    $languageName = $translation["name"];
-
-                    $this->languagesNames[] = $languageName;
-                    $this->translations[$languageName] = $translation;
+                    $this->translations[$translation["name"]] = $translation;
                 }
             }
         }
@@ -71,7 +66,7 @@ class TranslationManager {
     }
 
     public function getLanguagesNames(): array {
-        return $this->languagesNames;
+        return array_keys($this->translations);
     }
 
     public function getQueryHelper(): QueryHelper {
