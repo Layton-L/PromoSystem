@@ -2,8 +2,8 @@
 # sqlite3
 provider: "sqlite3"
 
-# en / ru
-language: "en"
+# eng / rus
+language: "eng"
 
 promo:
   minimum_length: 5
