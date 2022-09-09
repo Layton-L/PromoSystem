@@ -65,8 +65,8 @@ class TranslationManager {
         return $this->languageName;
     }
 
-    public function getLanguagesNames(): array {
-        return array_keys($this->translations);
+    public function getTranslations(): array {
+        return $this->translations;
     }
 
     public function getQueryHelper(): QueryHelper {
