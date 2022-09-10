@@ -50,7 +50,7 @@ class TranslationManager {
                     }
 
                     $translation = json_decode(file_get_contents($file), true);
-                    $this->translations[$translation["name"]] = $translation;
+                    $this->translations[explode("_", explode(".", $filename)[0])[1]] = $translation;
                 }
             }
         }
