@@ -25,7 +25,6 @@ namespace PromoSystem\Layton\form\admin;
 
 use jojoe77777\FormAPI\SimpleForm;
 use pocketmine\player\Player;
-use PromoSystem\Layton\form\admin\user\UserManagementForm;
 use PromoSystem\Layton\PromoSystem;
 
 class PromoAdminForm extends SimpleForm {
@@ -47,9 +46,6 @@ class PromoAdminForm extends SimpleForm {
                 case 3:
                     $player->sendForm(new PromoListForm());
                     break;
-                case 4:
-                    $player->sendForm(new UserManagementForm());
-                    break;
             }
         });
         $queryHelper = PromoSystem::getInstance()->getTranslationManager()->getQueryHelper();
@@ -59,7 +55,6 @@ class PromoAdminForm extends SimpleForm {
         $this->addButton($queryHelper->getCurrentTranslation("module.admin.simple.form.button.delete"));
         $this->addButton($queryHelper->getCurrentTranslation("module.admin.simple.form.button.info"));
         $this->addButton($queryHelper->getCurrentTranslation("module.admin.simple.form.button.view"));
-        $this->addButton($queryHelper->getCurrentTranslation("module.admin.simple.form.button.user_management"));
     }
 
 }
