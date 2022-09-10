@@ -28,7 +28,8 @@ use pocketmine\command\CommandSender;
 use pocketmine\player\Player;
 use PromoSystem\Layton\PromoSystem;
 
-class PromoLanguagesCommand extends Command {
+class
+PromoLanguagesCommand extends Command {
 
     public const PERMISSION = "promosystem.languages";
 
@@ -47,8 +48,8 @@ class PromoLanguagesCommand extends Command {
             return;
         }
 
-        foreach (array_keys(PromoSystem::getInstance()->getTranslationManager()->getTranslations()) as $number => $languageName) {
-            $sender->sendMessage($number + 1 . ". " . $languageName);
+        foreach (array_keys(PromoSystem::getInstance()->getTranslationManager()->getTranslations()) as $number => $languageы) {
+            $sender->sendMessage($number + 1 . ". " . $language);
         }
     }
 
