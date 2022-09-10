@@ -4,6 +4,7 @@ provider: "sqlite3"
 
 # eng / rus
 language: "eng"
+custom_translations_enabled: true
 
 promo:
   minimum_length: 5

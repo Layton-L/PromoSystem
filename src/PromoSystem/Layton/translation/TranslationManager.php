@@ -24,6 +24,7 @@ declare(strict_types = 1);
 namespace PromoSystem\Layton\translation;
 
 use PromoSystem\Layton\PromoSystem;
+use SplFileInfo;
 
 class TranslationManager {
 
@@ -36,26 +37,14 @@ class TranslationManager {
     private QueryHelper $queryHelper;
 
     public function __construct(PromoSystem $plugin) {
-        @mkdir($translationDirectory = $plugin->getDataFolder() . "translations\\");
+        @mkdir($translationsDirectory = $plugin->getDataFolder() . "translations\\");
 
-        foreach ($plugin->getResources() as $resource) {
-            if ($resource->isFile()) {
-                $filename = $resource->getFilename();
-                if (str_starts_with($filename, "translation_") and str_ends_with($filename, ".json")) {
-                    $file = $translationDirectory . $filename;
-
-                    if (!file_exists($file)) {
-                        file_put_contents($file, file_get_contents($resource->getPathname()));
-                    }
-
-                    $translation = json_decode(file_get_contents($file), true);
-                    $this->translations[explode("_", explode(".", $filename)[0])[1]] = $translation;
-                }
-            }
+        $this->loadTranslations($plugin, $translationsDirectory);
+        if ($plugin->getConfig()->get("custom_translations_enabled")) {
+            $this->loadCustomTranslations($plugin, $translationsDirectory);
         }
 
         $language = $plugin->getConfig()->get("language");
-
         if (array_key_exists($language, $this->translations)) {
             $this->currentLanguage = $language;
         } else {
@@ -63,6 +52,41 @@ class TranslationManager {
         }
 
         $this->queryHelper = new QueryHelper($this->currentLanguage, $this->translations);
+    }
+
+    private function loadTranslations(PromoSystem $plugin, string $translationsDirectory): void {
+        foreach ($plugin->getResources() as $resource) {
+            if ($resource->isFile()) {
+                $filename = $resource->getFilename();
+                if (str_starts_with($filename, "translation_") and str_ends_with($filename, ".json")) {
+                    $file = $translationsDirectory . $filename;
+
+                    if (!file_exists($file)) {
+                        file_put_contents($file, file_get_contents($resource->getPathname()));
+                    }
+
+                    $this->translations[explode("_", explode(".", $filename)[0])[1]] = json_decode(file_get_contents($file), true);
+                }
+            }
+        }
+    }
+
+    private function loadCustomTranslations(PromoSystem $plugin, string $translationsDirectory): void {
+        foreach (scandir($translationsDirectory) as $resource) {
+            $resource = new SplFileInfo($translationsDirectory . $resource);
+
+            if ($resource->isFile()) {
+                $filename = $resource->getFilename();
+
+                if (str_starts_with($filename, "translation_") and str_ends_with($filename, ".json")) {
+                    $language = explode("_", explode(".", $filename)[0])[1];
+
+                    if (!array_key_exists($language, $this->translations)) {
+                        $this->translations[$language] = json_decode(file_get_contents($resource->getPathname()), true);
+                    }
+                }
+            }
+        }
     }
 
     public function getTranslations(): array {
