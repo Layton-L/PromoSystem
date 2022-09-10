@@ -41,7 +41,7 @@ class TranslationManager {
 
         $this->loadTranslations($plugin, $translationsDirectory);
         if ($plugin->getConfig()->get("custom_translations_enabled")) {
-            $this->loadCustomTranslations($plugin, $translationsDirectory);
+            $this->loadCustomTranslations($translationsDirectory);
         }
 
         $language = $plugin->getConfig()->get("language");
@@ -71,7 +71,7 @@ class TranslationManager {
         }
     }
 
-    private function loadCustomTranslations(PromoSystem $plugin, string $translationsDirectory): void {
+    private function loadCustomTranslations(string $translationsDirectory): void {
         foreach (scandir($translationsDirectory) as $resource) {
             $resource = new SplFileInfo($translationsDirectory . $resource);
 

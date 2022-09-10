@@ -48,7 +48,7 @@ PromoLanguagesCommand extends Command {
             return;
         }
 
-        foreach (array_keys(PromoSystem::getInstance()->getTranslationManager()->getTranslations()) as $number => $languageы) {
+        foreach (array_keys(PromoSystem::getInstance()->getTranslationManager()->getTranslations()) as $number => $language) {
             $sender->sendMessage($number + 1 . ". " . $language);
         }
     }
