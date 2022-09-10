@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS promos (
-    promo         TEXT    NOT     NULL PRIMARY KEY,
+    promo         TEXT    NOT     NULL,
     uses          INTEGER DEFAULT 0,
     max_uses      INTEGER NOT     NULL,
     creation_time INTEGER NOT     NULL,

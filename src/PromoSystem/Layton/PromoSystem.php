@@ -28,6 +28,7 @@ use PromoSystem\Layton\command\PromoAdminCommand;
 use PromoSystem\Layton\command\PromoCommand;
 use PromoSystem\Layton\command\PromoLanguagesCommand;
 use PromoSystem\Layton\data\DataManager;
+use PromoSystem\Layton\provider\MySQLProvider;
 use PromoSystem\Layton\provider\SQLite3Provider;
 use PromoSystem\Layton\translation\TranslationManager;
 
@@ -48,6 +49,7 @@ class PromoSystem extends PluginBase {
         $this->saveDefaultConfig();
 
         $provider = match ($this->getConfig()->get("provider")) {
+            "mysql" => new MySQLProvider($this),
             default => new SQLite3Provider($this),
         };
 

@@ -1,6 +1,12 @@
 ---
-# sqlite3
+# sqlite3 / mysql
 provider: "sqlite3"
+
+provider_settings:
+  host: "localhost"
+  user: "root"
+  password: ""
+  db: "promosystem"
 
 # eng / rus
 language: "eng"
