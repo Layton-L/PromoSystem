@@ -23,7 +23,6 @@ declare(strict_types = 1);
 
 namespace PromoSystem\Layton\translation;
 
-use pocketmine\utils\Config;
 use PromoSystem\Layton\PromoSystem;
 
 class TranslationManager {

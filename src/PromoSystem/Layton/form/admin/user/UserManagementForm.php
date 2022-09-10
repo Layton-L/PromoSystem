@@ -25,6 +25,7 @@ namespace PromoSystem\Layton\form\admin\user;
 
 use jojoe77777\FormAPI\SimpleForm;
 use pocketmine\player\Player;
+use PromoSystem\Layton\PromoSystem;
 
 class UserManagementForm extends SimpleForm {
 
@@ -33,8 +34,23 @@ class UserManagementForm extends SimpleForm {
             if ($data === null) return;
 
             switch ($data) {
+                case 0:
+                    //TODO: Create UserActivatePromoForm
+                    break;
+                case 1:
+                    //TODO: Create UserDeactivatePromoForm
+                    break;
+                case 2:
+                    //TODO: Create UserPromoListForm
+                    break;
             }
         });
+        $queryHelper = PromoSystem::getInstance()->getTranslationManager()->getQueryHelper();
+        $this->setTitle($queryHelper->getCurrentTranslation("module.admin.user_management.form.title"));
+
+        $this->addButton($queryHelper->getCurrentTranslation("module.admin.user_management.form.button.activate"));
+        $this->addButton($queryHelper->getCurrentTranslation("module.admin.user_management.form.button.deactivate"));
+        $this->addButton($queryHelper->getCurrentTranslation("module.admin.user_management.form.button.view"));
     }
 
 }

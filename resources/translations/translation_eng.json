@@ -152,6 +152,16 @@
             "forward": "Forward"
           }
         }
+      },
+      "user_management": {
+        "form": {
+          "title": "User management",
+          "button": {
+            "activate": "Activate promo code",
+            "deactivate": "Deactivate promo code",
+            "view": "View promo codes"
+          }
+        }
       }
     }
   }
