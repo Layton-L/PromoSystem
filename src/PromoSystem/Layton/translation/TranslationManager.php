@@ -28,9 +28,11 @@ use PromoSystem\Layton\PromoSystem;
 
 class TranslationManager {
 
-    private string $languageName = "eng";
-
     private array $translations = [];
+
+    private string $defaultLanguage = "eng";
+
+    private string $currentLanguage;
 
     private QueryHelper $queryHelper;
 
@@ -54,19 +56,26 @@ class TranslationManager {
         }
 
         $language = $plugin->getConfig()->get("language");
+
         if (array_key_exists($language, $this->translations)) {
-            $this->languageName = $language;
+            $this->currentLanguage = $language;
+        } else {
+            $this->currentLanguage = $this->defaultLanguage;
         }
 
-        $this->queryHelper = new QueryHelper($this->languageName, $this->translations);
-    }
-
-    public function getLanguageName(): string {
-        return $this->languageName;
+        $this->queryHelper = new QueryHelper($this->currentLanguage, $this->translations);
     }
 
     public function getTranslations(): array {
         return $this->translations;
+    }
+
+    public function getDefaultLanguage(): string {
+        return $this->defaultLanguage;
+    }
+
+    public function getCurrentLanguage(): string {
+        return $this->currentLanguage;
     }
 
     public function getQueryHelper(): QueryHelper {

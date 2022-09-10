@@ -83,17 +83,17 @@ class PromoActivateForm extends CustomForm {
             $dataManager->setUses($promo, $uses + 1);
             BedrockEconomyAPI::getInstance()->addToPlayerBalance($player->getName(), $amount);
 
-            $player->sendMessage(str_replace("%amount%", (string) $amount, $queryHelper->getTranslatedString("module.promo.message.success")));
+            $player->sendMessage(str_replace("%amount%", (string) $amount, $queryHelper->getCurrentTranslation("module.promo.message.success")));
         });
-        $this->setTitle($queryHelper->getTranslatedString("module.promo.form.title"));
+        $this->setTitle($queryHelper->getCurrentTranslation("module.promo.form.title"));
 
         if ($error === null) {
-            $this->addLabel($queryHelper->getTranslatedString("module.promo.form.label"));
+            $this->addLabel($queryHelper->getCurrentTranslation("module.promo.form.label"));
         } else {
-            $this->addLabel($queryHelper->getTranslatedString($error));
+            $this->addLabel($queryHelper->getCurrentTranslation($error));
         }
 
-        $this->addInput($queryHelper->getTranslatedString("module.promo.form.input.text"), $queryHelper->getTranslatedString("module.promo.form.input.placeholder"), "", "promo");
+        $this->addInput($queryHelper->getCurrentTranslation("module.promo.form.input.text"), $queryHelper->getCurrentTranslation("module.promo.form.input.placeholder"), "", "promo");
     }
     
 }

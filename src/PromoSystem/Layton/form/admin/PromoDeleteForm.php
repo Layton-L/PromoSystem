@@ -54,17 +54,17 @@ class PromoDeleteForm extends CustomForm {
                 return;
             }
 
-            $player->sendMessage($queryHelper->getTranslatedString("module.admin.delete.message.successful"));
+            $player->sendMessage($queryHelper->getCurrentTranslation("module.admin.delete.message.successful"));
         });
-        $this->setTitle($queryHelper->getTranslatedString("module.admin.delete.form.title"));
+        $this->setTitle($queryHelper->getCurrentTranslation("module.admin.delete.form.title"));
 
         if ($error === null) {
-            $this->addLabel($queryHelper->getTranslatedString("module.admin.delete.form.label"));
+            $this->addLabel($queryHelper->getCurrentTranslation("module.admin.delete.form.label"));
         } else {
-            $this->addLabel($queryHelper->getTranslatedString($error));
+            $this->addLabel($queryHelper->getCurrentTranslation($error));
         }
 
-        $this->addInput($queryHelper->getTranslatedString("module.admin.delete.form.input.text"), $queryHelper->getTranslatedString("module.admin.delete.form.input.placeholder"), "", "promo");
+        $this->addInput($queryHelper->getCurrentTranslation("module.admin.delete.form.input.text"), $queryHelper->getCurrentTranslation("module.admin.delete.form.input.placeholder"), "", "promo");
     }
 
 }

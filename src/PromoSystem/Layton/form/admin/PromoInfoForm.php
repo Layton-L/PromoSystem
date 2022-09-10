@@ -51,15 +51,15 @@ class PromoInfoForm extends CustomForm {
 
             $player->sendMessage(DataHelper::getFormattedPromoString($promo));
         });
-        $this->setTitle($queryHelper->getTranslatedString("module.admin.info.form.title"));
+        $this->setTitle($queryHelper->getCurrentTranslation("module.admin.info.form.title"));
 
         if ($error === null) {
-            $this->addLabel($queryHelper->getTranslatedString("module.admin.info.form.label"));
+            $this->addLabel($queryHelper->getCurrentTranslation("module.admin.info.form.label"));
         } else {
-            $this->addLabel($queryHelper->getTranslatedString($error));
+            $this->addLabel($queryHelper->getCurrentTranslation($error));
         }
 
-        $this->addInput($queryHelper->getTranslatedString("module.admin.info.form.input.text"), $queryHelper->getTranslatedString("module.admin.info.form.input.placeholder"), "", "promo");
+        $this->addInput($queryHelper->getCurrentTranslation("module.admin.info.form.input.text"), $queryHelper->getCurrentTranslation("module.admin.info.form.input.placeholder"), "", "promo");
     }
 
 }

@@ -79,17 +79,17 @@ class PromoCreateForm extends CustomForm {
                 $player->sendForm(new PromoCreateUsesLimitedForm($promo, $amount));
             }
         });
-        $this->setTitle($queryHelper->getTranslatedString("module.admin.create.form.title"));
+        $this->setTitle($queryHelper->getCurrentTranslation("module.admin.create.form.title"));
 
         if ($error === null) {
-            $this->addLabel($queryHelper->getTranslatedString("module.admin.create.form.label"));
+            $this->addLabel($queryHelper->getCurrentTranslation("module.admin.create.form.label"));
         } else {
-            $this->addLabel($queryHelper->getTranslatedString($error));
+            $this->addLabel($queryHelper->getCurrentTranslation($error));
         }
 
-        $this->addInput($queryHelper->getTranslatedString("module.admin.create.form.input.promo.text"), $queryHelper->getTranslatedString("module.admin.create.form.input.promo.placeholder"), "", "promo");
-        $this->addInput($queryHelper->getTranslatedString("module.admin.create.form.input.amount.text"), $queryHelper->getTranslatedString("module.admin.create.form.input.amount.placeholder"), "", "amount");
-        $this->addToggle($queryHelper->getTranslatedString("module.admin.create.form.toggle.text"), null, "type");
+        $this->addInput($queryHelper->getCurrentTranslation("module.admin.create.form.input.promo.text"), $queryHelper->getCurrentTranslation("module.admin.create.form.input.promo.placeholder"), "", "promo");
+        $this->addInput($queryHelper->getCurrentTranslation("module.admin.create.form.input.amount.text"), $queryHelper->getCurrentTranslation("module.admin.create.form.input.amount.placeholder"), "", "amount");
+        $this->addToggle($queryHelper->getCurrentTranslation("module.admin.create.form.toggle.text"), null, "type");
     }
 
 }

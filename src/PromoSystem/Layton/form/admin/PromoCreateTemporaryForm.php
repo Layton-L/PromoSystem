@@ -54,17 +54,17 @@ class PromoCreateTemporaryForm extends CustomForm {
                 return;
             }
 
-            $player->sendMessage($queryHelper->getTranslatedString("module.admin.create.message.successful"));
+            $player->sendMessage($queryHelper->getCurrentTranslation("module.admin.create.message.successful"));
         });
-        $this->setTitle($queryHelper->getTranslatedString("module.admin.create.temporary.form.title"));
+        $this->setTitle($queryHelper->getCurrentTranslation("module.admin.create.temporary.form.title"));
 
         if ($error === null) {
-            $this->addLabel($queryHelper->getTranslatedString("module.admin.create.temporary.form.label"));
+            $this->addLabel($queryHelper->getCurrentTranslation("module.admin.create.temporary.form.label"));
         } else {
-            $this->addLabel($queryHelper->getTranslatedString($error));
+            $this->addLabel($queryHelper->getCurrentTranslation($error));
         }
 
-        $this->addInput($queryHelper->getTranslatedString("module.admin.create.temporary.form.input.text"), $queryHelper->getTranslatedString("module.admin.create.temporary.form.input.placeholder"), "", "action_time");
+        $this->addInput($queryHelper->getCurrentTranslation("module.admin.create.temporary.form.input.text"), $queryHelper->getCurrentTranslation("module.admin.create.temporary.form.input.placeholder"), "", "action_time");
     }
 
 }

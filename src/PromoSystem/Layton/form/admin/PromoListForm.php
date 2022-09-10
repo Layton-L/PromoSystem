@@ -70,10 +70,10 @@ class PromoListForm extends SimpleForm {
             if ($dataManager->isCreated($promo)) {
                 $player->sendMessage(DataHelper::getFormattedPromoString($promo));
             } else {
-                $player->sendMessage($queryHelper->getTranslatedString("module.admin.info.message.error.uncreated"));
+                $player->sendMessage($queryHelper->getCurrentTranslation("module.admin.info.message.error.uncreated"));
             }
         });
-        $this->setTitle(str_replace("%page%", (string) ($index + 1), $queryHelper->getTranslatedString("module.admin.list.form.title")));
+        $this->setTitle(str_replace("%page%", (string) ($index + 1), $queryHelper->getCurrentTranslation("module.admin.list.form.title")));
 
         if (isset($pages[$index])) {
             foreach ($pages[$index] as $promo) {
@@ -81,8 +81,8 @@ class PromoListForm extends SimpleForm {
             }
         }
 
-        $this->addButton($queryHelper->getTranslatedString("module.admin.list.form.button.back"));
-        $this->addButton($queryHelper->getTranslatedString("module.admin.list.form.button.forward"));
+        $this->addButton($queryHelper->getCurrentTranslation("module.admin.list.form.button.back"));
+        $this->addButton($queryHelper->getCurrentTranslation("module.admin.list.form.button.forward"));
     }
 
 }

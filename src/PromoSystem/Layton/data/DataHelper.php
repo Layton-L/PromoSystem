@@ -31,7 +31,7 @@ class DataHelper {
         $queryHelper = PromoSystem::getInstance()->getTranslationManager()->getQueryHelper();
         $dataManager = PromoSystem::getInstance()->getDataManager();
 
-        $message = str_replace("%promo%", $promo, $queryHelper->getTranslatedString("module.admin.info.message.successful"));
+        $message = str_replace("%promo%", $promo, $queryHelper->getCurrentTranslation("module.admin.info.message.successful"));
         $message = str_replace("%amount%", (string) $dataManager->getAmount($promo), $message);
         $message = str_replace("%creation_time%", date("F j, Y, g:i a", $dataManager->getCreationTime($promo)), $message);
         $message = str_replace("%uses%", (string) $dataManager->getUses($promo), $message);
@@ -39,9 +39,9 @@ class DataHelper {
         $message = str_replace("%action_time%", (string) $dataManager->getActionTime($promo), $message);
 
         if ($dataManager->isUsesLimited($promo)) {
-            $type = $queryHelper->getTranslatedString("promo.uses_limited");
+            $type = $queryHelper->getCurrentTranslation("promo.uses_limited");
         } else {
-            $type = $queryHelper->getTranslatedString("promo.temporary");
+            $type = $queryHelper->getCurrentTranslation("promo.temporary");
         }
 
         return str_replace("%promo_type%", $type, $message);

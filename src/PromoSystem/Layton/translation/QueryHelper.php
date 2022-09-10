@@ -25,13 +25,13 @@ namespace PromoSystem\Layton\translation;
 
 class QueryHelper {
 
-    public function __construct(private string $languageName, private array $translations) {
+    public function __construct(private string $language, private array $translations) {
 
     }
 
-    public function getTranslatedString(string $query): string {
+    private function translate(string $query, string $language): string {
         $keys = explode(".", $query);
-        $translation = $this->translations[$this->languageName];
+        $translation = $this->translations[$language];
 
         if (count($keys) == 1 && $keys[0] == $query) {
             $data = $translation[$query] ?? "";
@@ -55,6 +55,18 @@ class QueryHelper {
         }
 
         return !is_string($data) ? "" : $data;
+    }
+
+    public function getCurrentTranslation(string $query): string {
+        return $this->translate($query, $this->language);
+    }
+
+    public function getTranslation(string $query, string $language): string {
+        if (!isset($this->translations[$language])) {
+            return "";
+        }
+
+        return $this->translate($query, $language);
     }
 
 }

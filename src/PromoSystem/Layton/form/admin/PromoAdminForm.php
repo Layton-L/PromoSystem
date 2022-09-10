@@ -53,13 +53,13 @@ class PromoAdminForm extends SimpleForm {
             }
         });
         $queryHelper = PromoSystem::getInstance()->getTranslationManager()->getQueryHelper();
-        $this->setTitle($queryHelper->getTranslatedString("module.admin.simple.form.title"));
+        $this->setTitle($queryHelper->getCurrentTranslation("module.admin.simple.form.title"));
 
-        $this->addButton($queryHelper->getTranslatedString("module.admin.simple.form.button.create"));
-        $this->addButton($queryHelper->getTranslatedString("module.admin.simple.form.button.delete"));
-        $this->addButton($queryHelper->getTranslatedString("module.admin.simple.form.button.info"));
-        $this->addButton($queryHelper->getTranslatedString("module.admin.simple.form.button.view"));
-        $this->addButton($queryHelper->getTranslatedString("module.admin.simple.form.button.user_management"));
+        $this->addButton($queryHelper->getCurrentTranslation("module.admin.simple.form.button.create"));
+        $this->addButton($queryHelper->getCurrentTranslation("module.admin.simple.form.button.delete"));
+        $this->addButton($queryHelper->getCurrentTranslation("module.admin.simple.form.button.info"));
+        $this->addButton($queryHelper->getCurrentTranslation("module.admin.simple.form.button.view"));
+        $this->addButton($queryHelper->getCurrentTranslation("module.admin.simple.form.button.user_management"));
     }
 
 }

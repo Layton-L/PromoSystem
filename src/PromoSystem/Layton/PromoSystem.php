@@ -55,11 +55,11 @@ class PromoSystem extends PluginBase {
         $this->dataManager = new DataManager($provider);
         $this->registerCommands();
 
-        $this->getLogger()->info($this->translationManager->getQueryHelper()->getTranslatedString("status.loaded"));
+        $this->getLogger()->info($this->translationManager->getQueryHelper()->getCurrentTranslation("status.loaded"));
     }
 
     public function onEnable(): void {
-        $this->getLogger()->info($this->translationManager->getQueryHelper()->getTranslatedString("status.enabled"));
+        $this->getLogger()->info($this->translationManager->getQueryHelper()->getCurrentTranslation("status.enabled"));
     }
 
     private function registerCommands(): void {
@@ -67,9 +67,9 @@ class PromoSystem extends PluginBase {
         $map = $this->getServer()->getCommandMap();
 
         $map->registerAll("PromoSystem", [
-            new PromoCommand("promo", $queryHelper->getTranslatedString("command.promo.description")),
-            new PromoAdminCommand("promo-admin", $queryHelper->getTranslatedString("command.promo-admin.description")),
-            new PromoLanguagesCommand("promo-languages", $queryHelper->getTranslatedString("command.promo-languages.description"))
+            new PromoCommand("promo", $queryHelper->getCurrentTranslation("command.promo.description")),
+            new PromoAdminCommand("promo-admin", $queryHelper->getCurrentTranslation("command.promo-admin.description")),
+            new PromoLanguagesCommand("promo-languages", $queryHelper->getCurrentTranslation("command.promo-languages.description"))
         ]);
     }
 
