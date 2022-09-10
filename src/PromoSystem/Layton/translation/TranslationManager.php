@@ -79,11 +79,7 @@ class TranslationManager {
                 $filename = $resource->getFilename();
 
                 if (str_starts_with($filename, "translation_") and str_ends_with($filename, ".json")) {
-                    $language = explode("_", explode(".", $filename)[0])[1];
-
-                    if (!array_key_exists($language, $this->translations)) {
-                        $this->translations[$language] = json_decode(file_get_contents($resource->getPathname()), true);
-                    }
+                    $this->translations[explode("_", explode(".", $filename)[0])[1]] = json_decode(file_get_contents($resource->getPathname()), true);
                 }
             }
         }
